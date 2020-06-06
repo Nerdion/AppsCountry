@@ -1,0 +1,11 @@
+1)dev "company"
+2)dev "company" country
+3)dev "company" headq
+4)dev "company" owner country
+5)dev "company" parent company
+    parent_company name
+    1..4
+
+6)app adderss
+7)visit site =>contact address
+8)
