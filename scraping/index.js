@@ -16,10 +16,13 @@ let appName = 'TikTok';
 
     let myData = await page.evaluate(() => {
         let topResults = document.querySelectorAll('.st');
+        let appDescription = document.querySelector('#kp-wp-tab-overview > div:nth-child(1)');
         var result = [];
         for(let i=0; i<topResults.length; i++) {
             result.push(topResults[i].innerText);
         }
+
+        result.push(appDescription);
 
         return {
             result
