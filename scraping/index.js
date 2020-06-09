@@ -1,11 +1,10 @@
 
-var GoogleSearch = require('./models/GoogleSearch');
+const GoogleSearch  = require('./models/GoogleSearch');
 
- async()=> {
-     
-        console.log("Errorasdsa")
-        var data = await new GoogleSearch().getSearchData()
-        console.log(data)
+var gs = new GoogleSearch()
 
+async function myFunc() {
+	var data =  await gs.getSearchData()
 }
 
+myFunc();

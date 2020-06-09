@@ -59,6 +59,12 @@ class _ListAppsPagesContent extends StatelessWidget {
                         title: Text("${app.appName} (${app.packageName})"),
                         subtitle: Text('Version: ${app.versionName}\nSystem app: ${app.systemApp}\nAPK file path: ${app.apkFilePath}\nData dir : ${app.dataDir}\nInstalled: ${DateTime.fromMillisecondsSinceEpoch(app.installTimeMilis).toString()}\nUpdated: ${DateTime.fromMillisecondsSinceEpoch(app.updateTimeMilis).toString()}'),
                       ),
+                      RaisedButton(
+                        onPressed: () => {
+                        DeviceApps.openApp(app.packageName)
+                        },
+                        child: const Text('Open App'),
+                      ),
                       Divider(
                         height: 1.0,
                       )
