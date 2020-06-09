@@ -1,0 +1,1722 @@
+
+var mongo = require('../models/model');
+var getfields = require('../models/form');
+var ObjectID = require('mongodb').ObjectID;
+var regex = require("regex")
+var form = require('../models/form')
+var validmsg = require('../models/message');
+var keys = require('../common/key')
+var sendmail = require('../models/mail')
+
+class Organization{
+    constructor(){
+        this.Organiz = "Organization"
+        this.Map = "SearchMappings"
+        this.Orgtyp = "OrganizationType"
+        this.extlink = "ExternalLinks"
+        this.addtype = "AddressType"
+        this.contrymas = "CountryMaster"
+        this.orgval = "OrganizationValidation"
+        this.usrprof = "UserProfile"
+        this.contact = "ContactMaster"
+        this.queries = "Queries"
+        this.usr = "Users";
+        this.OrgVal = "OrganizationValidation"
+        this.filters = "Filters"
+        this.VRR = "VRRequirement",
+        this.condet = "ContactType"
+        this.facts = "Facts"
+        this.modules = "Modules"
+    }
+
+async getOrganization(bodyInfo){
+    try{
+        var body = bodyInfo
+        var orglist = []
+        // var orgdata = {}
+        var val = {}
+        var res = String
+        var qarray = []
+        var action = bodyInfo.action
+        var search = body.searchText
+        if (action == 1){
+        let mapping = await mongo.actual.collection(this.Map).find({'Collection': 'Organization'}, {fields:{'_id':0, 'Field':1}}).toArray();
+        var objlist= []
+        if (mapping.length>0){
+            for (var j=0; j<mapping.length; j++){
+                objlist.push(mapping[j].Field)
+            }
+            if (objlist.length>0){
+                var val_array = search
+                for (var k=0; k<objlist.length; k++){
+                    var v = {}
+                    v[objlist[k]] = {"$regex": val_array, "$options": 'i'}
+                    qarray.push(v)
+            }    
+            }
+        } 
+        if (qarray.length>0){
+            val = {'$or': qarray}
+        }
+        let orgname = await mongo.actual.collection(this.Organiz).aggregate([
+            {'$match': val}, 
+            {'$project' :{'Name':1, 'Address':1, '_id':0, 'OrgID':1, 'ShortName':1, 'RegDetails.ID':1}}]).toArray();
+        if (orgname.length>0){
+            for (var i=0; i<orgname.length; i++){
+                var orgdata = {}
+                res = orgname[i].Name 
+                orgdata['Name'] = res
+                orgdata['OrgID'] = orgname[i].OrgID
+
+                orglist.push(orgdata)
+            }
+        }else{
+            return {"Success":false,"Message": "No result found","Payload":[]}
+        } 
+        return {"Success":true,"Message": "Organization Search result","Payload":{'Result':orglist} }
+    }
+
+    if (action == 2){
+
+        var id = bodyInfo.OrgType
+        var subtype = bodyInfo.SubType
+        if(subtype==undefined){
+            var orname = await mongo.actual.collection(this.Organiz).find({"Name": {"$regex": search, "$options": 'i'},"OrgType.ID":id}, {fields: {'_id':0, 'Name':1, 'OrgID':1, 'Address': 1,"OrgType":1}}).toArray();
+        }else{
+             orname = await mongo.actual.collection(this.Organiz).find({"Name": {"$regex": search, "$options": 'i'},"OrgType.ID":id,"OrgType.SubType":subtype}, {fields: {'_id':0, 'Name':1, 'OrgID':1, 'Address': 1,"OrgType":1}}).toArray();
+        }
+        if (orname.length>0){
+            for (var i=0; i<orname.length; i++){
+                var orgdata = {}
+                res = orname[i].Name 
+                orgdata['Name'] = res
+                orgdata['OrgID'] = orname[i].OrgID
+                orgdata["OrgType"]=orname[i].OrgType[0].ID
+                orglist.push(orgdata)
+            }
+            return {"Success":true,"Message": "Organization Search result","Payload":{'Result':orglist} }
+        }else{
+            return {"Success":false,"Message": "No result found","Payload":[]}
+        }
+    }
+
+    if (bodyInfo.TenantData.action ==3){
+        var org = bodyInfo.TenantData.OrgID
+        var ten = bodyInfo.TenantData.TenantID
+        
+        let orname = await mongo.actual.collection(this.Organiz).find({"OrgID": org, "TenantID": ten}, {fields: {'_id':0, 'TenantID':0,'Links':0, 'Status':0,'IsValid':0 }}).toArray();
+        
+        if (orname.length>0){
+            for(var s = 0; s<orname.length; s++){
+                var Cont = orname[s].ContactNumber
+                var regid = orname[s].ID
+                if (Cont){
+                    for (var t=0; t<Cont.length; t++){
+                        let con = await mongo.control.collection(this.condet).find({"ContactID": Cont[t].Type}, {fields: {'_id':0}}).toArray();
+                        if (con.length>0){
+                            Cont[t].Type = con[0].Type
+                        }
+                    }
+                }
+                if (regid){
+                    for (var q=0; q<regid.length; q++){
+                        var query = 
+                            [{
+                                $unwind: {path : "$RegistrationType"}
+                                },
+                                {
+                                    $match: {"Country":"India",
+                                        "RegistrationType.RegID":regid[q].Type }
+                                },
+                                {
+                                    $project: {
+                                        "RegistrationType.Type":1    
+                                    }
+                                },   
+                            ]
+                        let con1 = await mongo.control.collection(this.contrymas).aggregate(query).toArray();
+                        if (con1.length>0){
+                            regid[q].Type = con1[0].RegistrationType.Type
+                        }
+                    }
+                }
+            }
+            return {"Success":true,"Message": "Organization Search result","Payload":{'Result':orname} }
+        }
+    }
+
+    }catch(e){
+        return {"Success":false,"Error": e.toString(),"Payload":[] }
+    }
+    }
+
+async getOrgDetails(bodyInfo){
+    
+    // try{    
+    //     var orgid = bodyInfo.OrgID
+    //     let org = await mongo.actual.collection(this.Organiz).find({'OrgID': orgid}, {fields: {'_id':0}}).toArray();
+    //     if (org.length>0){
+    //         return {"Success":true,"Message": "Organization Details","Payload":{'Result':org}}
+    //                 }
+    //     else{
+    //         return{"Success":false,"Message": "No result found","Payload":[]}
+    //         }
+    //     }catch(e){
+    //         return {"Success":false,"Error": e.toString(),"Payload":[] }
+    //     }
+    try{
+        var modules = {}
+        var submodules = {}
+        var roles = {}
+        var response={}
+
+        if (bodyInfo.TenantData.ModuleID != null){
+            if(bodyInfo.TenantData.OrgValID!=undefined){
+                var orgtype_check = await mongo.actual.collection(this.orgval).findOne({"OrgValID": bodyInfo.TenantData.OrgValID}, {fields:{'OrgType':1}})
+             }else if(bodyInfo.TenantData.OrgID!=undefined){
+                 var orgtype_check = await mongo.actual.collection(this.Organiz).findOne({"OrgID": bodyInfo.TenantData.OrgID}, {fields:{'OrgType':1}})
+             }else if(bodyInfo.TenantData.OrgType!=undefined){
+                 orgtype_check={
+                     OrgType: [
+                        {
+                          "ID": bodyInfo.TenantData.OrgType[0].ID,
+                          "SubType": bodyInfo.TenantData.OrgType[0].SubType
+                        }
+                      ]
+                 }
+                 //orgtype_check.push(bodyInfo.TenantData.OrgType)
+             }
+            if(orgtype_check!=null){
+                if(orgtype_check.OrgType[0].ID==1){
+                    var filters = {TenantID:bodyInfo.TenantData.TenantID ,ModuleID:bodyInfo.TenantData.ModuleID,RoleID:bodyInfo.TenantData.RoleID} 
+                }
+                else{
+                    var filters = {TenantID:bodyInfo.TenantData.TenantID ,ModuleID:bodyInfo.TenantData.ModuleID,RoleID:bodyInfo.TenantData.RoleID,SubTypeID:orgtype_check.OrgType[0].SubType} 
+                }
+            }else{
+                var filters = {TenantID:bodyInfo.TenantData.TenantID ,ModuleID:bodyInfo.TenantData.ModuleID,RoleID:bodyInfo.TenantData.RoleID}                 
+            }
+            
+        
+        }else{
+        var filters = { TenantID:bodyInfo.TenantData.TenantID,ModuleID:{ "$in":[1]}}
+        }
+        let filter2={TenantID:bodyInfo.TenantData.TenantID ,ModuleID:bodyInfo.TenantData.ModuleID,RoleID:bodyInfo.TenantData.RoleID} 
+
+        let pagename = await new form().getpages(filter2)
+        Object.keys(pagename).forEach(function(p){
+            modules[pagename[p].ModuleID] ={"Name": pagename[p].Name,"DisplayName":pagename[p].DisplayName}
+            if("SubModule" in pagename[p]){
+                for(var subm=0;subm<pagename[p].SubModule.length;subm++){
+                    submodules[pagename[p].SubModule[subm].SubModuleID]= {"Name": pagename[p].SubModule[subm].Name,"DisplayName":pagename[p].SubModule[subm].DisplayName}
+                }
+            }
+        });
+
+        var rolefilter = {}
+        let rolename = await new form().getroles(rolefilter)
+            Object.keys(rolename).forEach(async function(r){
+                roles[rolename[r].RoleID] = {"Name":rolename[r].RoleName,"DisplayName":rolename[r].DisplayName}
+            });
+            let submodule =  await new form().fieldlist(filters)
+                var rolein ={}
+                for(var s=0;s<submodule.length;s++){
+                // Object.keys(submodule).forEach(function(s){ 
+                    var submod = {}
+                    for(var smodule=0;smodule<submodule[s].SubModule.length;smodule++){
+                    // Object.keys(submodule[s].SubModule).forEach(async function(smodule){
+                        var idobj={}
+                        Object.keys(bodyInfo.TenantData).forEach(async function(key) {
+                            idobj[key]= bodyInfo.TenantData[key]
+                            }); 
+                        idobj["RoleID"] = submodule[s].RoleID
+                        idobj["ModuleID"] = submodule[s].ModuleID
+                        idobj["Sr"] = submodules[submodule[s].SubModule[smodule].SubModuleID].Name
+
+
+                        var filter ={ "OrgID" : bodyInfo.TenantData.OrgID}
+                        var filter1 = {"OrgValID": bodyInfo.TenantData.OrgValID}
+
+                        if (filter.OrgID != undefined){
+                            var collection = this.Organiz
+                            var fil = filter
+                        }
+                        else if (filter1.OrgValID != undefined){
+                            var collection = this.OrgVal
+                            var fil = filter1
+                        }
+                        else{
+                            var collection = this.filters
+                            var fil = filter1
+                        }
+                        let values = await mongo.actual.collection(collection).find(fil,{fields:{"_id":0}}).toArray();
+                        rolein['editflag'] = false
+                        for(var fieldid = 0 ;fieldid<submodule[s].SubModule[smodule].Fields.length;fieldid++){
+                            if(Object.keys(submodule[s].SubModule[smodule].Fields[fieldid]).includes("SubField")){
+                                for(var subval=0;subval<submodule[s].SubModule[smodule].Fields[fieldid].SubField.length;subval++){
+                                    for(var sval=0;sval<submodule[s].SubModule[smodule].Fields[fieldid].SubField[subval].validations.length;sval++){
+                                        let val = await new validmsg().validationmsg(bodyInfo.TenantData.TenantID,bodyInfo.TenantData.ModuleID,submodule[s].SubModule[smodule].Fields[fieldid].SubField[subval].validations[sval])
+                                        var checkkey = Object.keys(submodule[s].SubModule[smodule].Fields[fieldid].SubField[subval])
+                                        if(checkkey.includes("Validate") ){
+                                            submodule[s].SubModule[smodule].Fields[fieldid].SubField[subval].Validate.push({"ValidationID":submodule[s].SubModule[smodule].Fields[fieldid].SubField[subval].validations[sval],"Pattern":val.Pattern,"Message":val.Message})
+                                        }else{
+                                            submodule[s].SubModule[smodule].Fields[fieldid].SubField[subval]["Validate"] = [{"ValidationID":submodule[s].SubModule[smodule].Fields[fieldid].SubField[subval].validations[sval],"Pattern":val.Pattern,"Message":val.Message}]
+                                        }
+                                    }
+                                }
+                            }else{
+                                for(var validid = 0 ;validid<submodule[s].SubModule[smodule].Fields[fieldid].validations.length;validid++){
+                                    var validationid = submodule[s].SubModule[smodule].Fields[fieldid].validations[validid]
+                                    let val = await new validmsg().validationmsg(idobj.TenantID,submodule[s].ModuleID,validationid)
+                                    if("Validate" in submodule[s].SubModule[smodule].Fields[fieldid]){
+                                        submodule[s].SubModule[smodule].Fields[fieldid].Validate.push({"ValidationID": validationid,"Pattern": val.Pattern,"Message": val.Message})
+                                    }else{
+                                        submodule[s].SubModule[smodule].Fields[fieldid]["Validate"]=[{"ValidationID": validationid,"Pattern": val.Pattern,"Message": val.Message}]
+                                    }
+                                    }
+
+                            }
+
+                            global.values = values
+                            if(values.length > 0 && bodyInfo.TenantData.action == undefined){
+                                Object.keys(values[0]).forEach(function(val){
+                                    if(val == submodule[s].SubModule[smodule].Fields[fieldid].name){
+                                        // if("SubField" in submodule[s].SubModule[smodule].Fields[fieldid] ){
+                                        //     for(var subf = 0 ;subf< submodule[s].SubModule[smodule].Fields[fieldid].SubField.length;subf++){
+                                        //         for(var valf = 0 ;valf<values[0][val].length;valf++){
+                                        //             Object.keys(values[0][val][valf]).forEach(function(subval){
+                                        //                 if(submodule[s].SubModule[smodule].Fields[fieldid].SubField[subf].name == subval){
+                                        //                     submodule[s].SubModule[smodule].Fields[fieldid].SubField[subf][subval] = values[0][val][valf][subval]
+                                        //                 }
+                                        //             })
+                                        //         }
+                                        //     }                                        
+                                        // }else{
+                                            submodule[s].SubModule[smodule].Fields[fieldid][val] = values[0][val]
+                                            submodule[s].SubModule[smodule].Fields[fieldid]["labelResult"] = values[0][val]  //for IAD part
+
+                                            rolein['editflag'] = true
+                                        // }
+                                    }  
+                                })
+                            }
+                        }      
+                        submod[submodules[submodule[s].SubModule[smodule].SubModuleID].Name]= {"Fields":submodule[s].SubModule[smodule].Fields,"IDOBJ":idobj,"DisplayName":submodules[submodule[s].SubModule[smodule].SubModuleID].DisplayName}          
+                        rolein[roles[submodule[s].RoleID].Name] = submod
+                        
+                       
+                        };
+                response[modules[submodule[s].ModuleID].Name]  = rolein
+
+             
+                }; 
+                return {"Success":true,"PayLoad":response}
+    }
+    catch(e){
+        return {"Success":false,"Error": e.toString()};
+    }
+
+    }
+
+async OrgType(bodyInfo){
+    try{
+
+        let orgtyp = await mongo.actual.collection(this.Orgtyp).find({}, {fields:{'_id':0}}).toArray();
+        if (orgtyp.length>0){
+                return{"Sucess": true, "Message": "Organization type", "Payload":orgtyp}
+            }
+        else{
+            return{"Success":false,"Message": "No result found","Payload":[]}
+        }
+    }catch(e){
+        return {"Success":false,"Error": e.toString(),"Payload":[] }
+    }
+
+    }
+
+
+async externalLinks(bodyInfo){
+    try{
+
+        let links = await mongo.actual.collection(this.extlink).find({}, {fields:{'_id':0}}).toArray();
+        if (links.length>0){
+                return{"Sucess": true, "Message": "External Links", "Payload":links}
+            }
+        else{
+            return{"Success":false,"Message": "No result found","Payload":[]}
+        }
+    }catch(e){
+        return {"Success":false,"Error": e.toString(),"Payload":[] }
+    }
+
+    }
+
+async addresstype(bodyInfo){
+    try{
+
+        let add = await mongo.actual.collection(this.addtype).find({}, {fields:{'_id':0}}).toArray();
+        if (add.length>0){
+                return{"Sucess": true, "Message": "Address type", "Payload":add}
+            }
+        else{
+            return{"Success":false,"Message": "No result found","Payload":[]}
+        }
+    }catch(e){
+        return {"Success":false,"Error": e.toString(),"Payload":[] }
+    }
+
+    }
+
+async regtype(bodyInfo){
+    try{
+
+        var country = bodyInfo.Country
+        let regty = await mongo.control.collection(this.contrymas).find({"Country":country}, {fields:{'_id':0,"Registration":1,"RegistrationAcademic":1}}).toArray();
+        if (regty.length>0){
+            
+                return{"Sucess": true, "Message": "Registration type", "Payload":regty[0]}
+            }
+        
+        else{
+            return{"Success":false,"Message": "No result found","Payload":[]}
+        }
+    }catch(e){
+        return {"Success":false,"Error": e.toString(),"Payload":[] }
+    }
+
+    }
+
+async pendingOrganization(bodyInfo){
+    try{
+        var action = bodyInfo.action
+        var secType = bodyInfo.secType
+
+        // if (action == 'Validation' && secType == 'Academics'){
+        //     var mysort = {"CreatedDate":1}
+        //         var pending  = await mongo.actual.collection(this.orgval).find({"IsValid":{"$in": [0]}}, {fields: {'_id':0}}).sort(mysort).toArray();
+        //         if (pending.length>0){
+        //             for (var i in pending){
+        //             if ('CreatedBy' in pending[i]){
+        //                 var usr = await mongo.actual.collection(this.usrprof).find({"UserID": ObjectID(pending[i].CreatedBy)} ,{fields: {'_id':0, "Modules.SubModule":1}}).toArray();
+        //                 if (usr.length> 0){
+        //                     var name = usr[0].Modules[0].SubModule[0]
+        //                     if (name.length<0)
+        //                     {
+        //                             pending[i]['Name'] = ''
+        //                     }
+        //                     else{
+        //                         var fname = name.Fields.FirstName+" "+name.Fields.Surname
+        //                         pending[i]['Name'] = fname
+        //                         }
+        //                 }else{
+        //                     pending[i]['Name'] = ''
+        //                 }
+        //             }
+        //             if ('IsValid' in pending[i]){
+        //                 var isval = pending[i].IsValid
+        //                 if (isval == 1){
+        //                     pending[i]['Validation Status'] = "Validation Completed"
+        //                     }
+        //                     else{
+        //                         pending[i]['Validation Status'] = "Validation Pending"
+        //                         }
+        //                 }
+        //                 else{
+        //                     pending[i]['Validation Status'] = "Validation Pending"
+        //                 }
+        //             }
+        //         return{"Sucess": true, "Message": "Pending Organization", "Payload":pending}
+        //         }
+        //         else{
+        //             return{"Sucess": false, "Message": "No results found", "Payload":[]}
+        //         }
+        // }
+        
+        if (action == 'Validation'){
+            // var mysort = {"CreatedDate":1}
+            var final = []
+            var pending  = await mongo.actual.collection(this.orgval).find({"IsValid":false}, {fields: {'_id':0,"Website":1,"Name":1,"Address Line 1":1,"Organization Short Name":1, "OrgValID":1, "OrgID":1}}).toArray();
+            if (pending.length>0){
+                for (var i= 0; i<pending.length; i++){
+                    final.push(pending[i])
+
+                }
+            }
+                // if (pending.length>0){
+                //     for (var i in pending){
+                //     if ('CreatedBy' in pending[i]){
+                //         var usr = await mongo.actual.collection(this.usrprof).find({"UserID": ObjectID(pending[i].CreatedBy)} ,{fields: {'_id':0, "Modules.SubModule":1}}).toArray();
+                //         if (usr.length> 0){
+                //             var name = usr[0].Modules[0].SubModule[0]
+                //             if (name.length<0)
+                //             {
+                //                     pending[i]['Name'] = ''
+                //             }
+                //             else{
+                //                 var fname = name.Fields.FirstName+" "+name.Fields.Surname
+                //                 pending[i]['Name'] = fname
+                //                 }
+                //         }else{
+                //             pending[i]['Name'] = ''
+                //         }
+                //     }
+                //     if ('IsValid' in pending[i]){
+                //         var isval = pending[i].IsValid
+                //         if (isval == 1){
+                //             pending[i]['Validation Status'] = "Validation Completed"
+                //         }
+                //         else{
+                //             pending[i]['Validation Status'] = "Validation Pending"
+                //             }
+                //         }
+                //         else{
+                //             pending[i]['Validation Status'] = "Validation Pending"
+                //         }
+                //     // if ('Type' in pending[i]){
+                        
+                //     // }
+
+                //     }
+                return{"Sucess": true, "Message": "Pending Organization List", "Payload":final}
+                // }
+                // else{
+                //     return{"Sucess": false, "Message": "No results found", "Payload":[]}
+                // }
+        }
+
+
+    }catch(e){
+        return {"Success":false,"Error": e.toString(),"Payload":[] }
+    }
+    }
+
+async contactdet(bodyInfo){
+    try{
+        let conta = await mongo.actual.collection(this.contact).find({}, {fields: {"_id": 0}} ).toArray();
+        if (conta.length>0){
+            return {"Sucess": true, "Message": "Contact type", "Payload":conta}
+        }
+        else{
+            return {"Sucess": false, "Message": "No results found", "Payload":[]}
+        }
+
+    }catch(e){
+        return {"Success":false,"Error": e.toString(),"Payload":[] }
+    }
+    }
+//internal admin API for searching various Individual users(Active, In Active etc) for verification
+async report(bodyInfo){
+    try{
+        if(bodyInfo.Action == 1){
+            let Data = await mongo.actual.collection(this.queries).find({'TenantID':bodyInfo.TenantID,'RoleID':bodyInfo.RoleID},{fields:{'_id':0,'Query':0, 'TenantID':0,'RoleID':0}}).toArray();
+
+            if(Data.length > 0){
+                return {"Success":true,"Message":"Data found successfully","Payload": Data } 
+            }else{
+                return {"Success":false,"Message":"No Data Found","Payload":[] }
+            }
+        }
+        var skip = bodyInfo.Skip
+        var limit = bodyInfo.Limit
+        if(limit <= 0){
+            return {"Success":false,"Message":"Limit should be positive","Payload":[] }
+        }
+        var sort = bodyInfo.Sort
+        let query;
+        if(bodyInfo.Action == 2){
+
+           if(bodyInfo.QID == 1){//All users
+                query = [
+                    { 
+                        "$lookup" : {
+                            "from" : "UserProfile", 
+                            "localField" : "UserID", 
+                            "foreignField" : "UserID", 
+                            "as" : "Data"
+                        }
+                    }, 
+                    { 
+                        "$unwind" : {
+                            "path" : "$Data", 
+                            "preserveNullAndEmptyArrays" : true
+                        }
+                    }, 
+                   
+                    { 
+                        "$match" : {
+                            "TenantID" : 1.0 ,
+                            "RoleID" : 1.0
+                        }
+                    }, 
+                    { 
+                        "$project" : {
+                            "_id" : 0.0, 
+                            "UserID" : 1.0, 
+                            // "Name" : {
+                            //     "$concat" : ["$Data.Modules.SubModule.Fields.FirstName"," ","$Data.Modules.SubModule.Fields.LastName"]
+                            // }, 
+                            "EmailID" : "$Email", 
+                            "DialCode" : "$DialCode", 
+                            "PhoneNumber" : "$PhoneNumber", 
+                            "ModifiedDate" :"$ModifiedDate",
+                            "UserStatus" : {
+                                "$cond" : {
+                                    "if" : {"$eq" : ["$IsValid",true]}, 
+                                    "then" : "Active", 
+                                    "else" : "In Active"
+                                }
+                            }, 
+                            "MobileStatus" : {
+                                "$cond" : {
+                                    "if" : {"$eq" : ["$MobileValid",true]}, 
+                                    "then" : "Confirmed", 
+                                    "else" : "Not Confirmed"
+                                }
+                            }, 
+                            "EmailStatus" : {
+                                "$cond" : {
+                                    "if" : {"$eq" : ["$EmailValid",true] }, 
+                                    "then" : "Confirmed", 
+                                    "else" : "Not Confirmed"
+                                }
+                            }
+                        }
+                    },
+                    {"$skip":skip},
+                    {"$limit":limit},
+                    {"$sort":sort}
+                ]
+                //Aggregate Query
+                let Data = await mongo.actual.collection(this.usr).aggregate(query).toArray();
+            
+                if (Data.length>0){
+                    return {"Success":true,"Message":"Data found successfully","Payload": Data } 
+                }else{
+                    return {"Success":false,"Message":"No Data Found","Payload":[] }
+                }
+           }
+           else if(bodyInfo.QID == 2){//Active users 
+                query = [
+                    { 
+                        "$lookup" : {
+                            "from" : "UserProfile", 
+                            "localField" : "UserID", 
+                            "foreignField" : "UserID", 
+                            "as" : "UserData"
+                        }
+                    }, 
+                    { 
+                        "$unwind" : {
+                            "path" : "$UserData", 
+                            "preserveNullAndEmptyArrays" : true
+                        }
+                    }, 
+                    { 
+                        "$unwind" : {
+                            "path" : "$UserData.Modules", 
+                            "preserveNullAndEmptyArrays" : true
+                        }
+                    }, 
+                    { 
+                        "$unwind" : {
+                            "path" : "$UserData.Modules.SubModule", 
+                            "preserveNullAndEmptyArrays" : true
+                        }
+                    }, 
+                    { 
+                        "$match" : {"IsValid" : true}
+                    }, 
+                    { 
+                        "$project" : {
+                            "_id" : 0.0, 
+                            "UserID" : 1.0, 
+                            //"Name" : {"$concat" : ["$UserData.Modules.SubModule.Fields.FirstName"," ","$UserData.Modules.SubModule.Fields.LastName"]}, 
+                            "EmailID" : "$Email", 
+                            "ModifiedDate":"$ModifiedDate",
+                            "DialCode" : "$DialCode", 
+                            "PhoneNumber" : "$PhoneNumber", 
+                            "UserStatus" : {
+                                "$cond" : {
+                                    "if" : {
+                                        "$eq" : ["$IsValid",true]
+                                    }, 
+                                    "then" : "Active", 
+                                    "else" : "In Active"
+                                }
+                            }, 
+                            "MobileStatus" : {
+                                "$cond" : {
+                                    "if" : {
+                                        "$eq" : ["$MobileValid",true]
+                                    }, 
+                                    "then" : "Confirmed", 
+                                    "else" : "Not Confirmed"
+                                }
+                            }, 
+                            "EmailStatus" : {
+                                "$cond" : {
+                                    "if" : {
+                                        "$eq" : ["$EmailValid",true]
+                                    }, 
+                                    "then" : "Confirmed", 
+                                    "else" : "Not Confirmed"
+                                }
+                            }
+                        }
+                    },
+                    {"$skip":skip},
+                    {"$limit":limit},
+                    {"$sort":sort}
+                ]
+            //Aggregate Query
+                let Data = await mongo.actual.collection(this.usr).aggregate(query).toArray();
+            
+                if (Data.length>0){
+                    return {"Success":true,"Message":"Data found successfully","Payload": Data }
+                }else{
+                    return {"Success":false,"Message":"No Data Found","Payload":[] }
+                }
+            }
+           else if(bodyInfo.QID == 3){//In Active users
+                 query = [
+                    { 
+                        "$match" : {
+                            "IsValid" : false
+                        }
+                    }, 
+                    { 
+                        "$project" : {
+                            "UserID" : "$_id", 
+                            "EmailID" : "$Email", 
+                            "ModifiedDate":"$ModifiedDate",
+                            "DialCode" : "$DialCode", 
+                            "PhoneNumber" : "$PhoneNumber", 
+                            "UserStatus" : {
+                                "$cond" : {
+                                    "if" : {
+                                        "$eq" : [
+                                            "$IsValid", 
+                                            true
+                                        ]
+                                    }, 
+                                    "then" : "Active", 
+                                    "else" : "In Active"
+                                }
+                            }, 
+                            "MobileStatus" : {
+                                "$cond" : {
+                                    "if" : {
+                                        "$eq" : [
+                                            "$MobileValid", 
+                                            true
+                                        ]
+                                    }, 
+                                    "then" : "Confirmed", 
+                                    "else" : "Not Confirmed"
+                                }
+                            }, 
+                            "EmailStatus" : {
+                                "$cond" : {
+                                    "if" : {
+                                        "$eq" : [
+                                            "$EmailValid", 
+                                            true
+                                        ]
+                                    }, 
+                                    "then" : "Confirmed", 
+                                    "else" : "Not Confirmed"
+                                }
+                            }
+                        }
+                    },
+                    {
+                        "$skip":skip
+                    },
+                    {
+                        "$limit":limit
+                    },
+                    {
+                        "$sort":sort
+                    }
+                 ]
+                 //Aggregate Query
+                let Data = await mongo.actual.collection(this.usr).aggregate(query).toArray();
+            
+                if (Data.length>0){
+                    return {"Success":true,"Message":"Data found successfully","Payload": Data }
+                }else{
+                    return {"Success":false,"Message":"No Data Found","Payload":[] }
+                }
+            }
+           else if(bodyInfo.QID == 4){//Work Sr Count
+
+                let query_main= [
+                    { 
+                        "$lookup" : {
+                            "from" : "UserProfile", 
+                            "localField" : "UserID", 
+                            "foreignField" : "UserID", 
+                            "as" : "Data"
+                        }
+                    }, 
+                    { 
+                        "$unwind" : {
+                            "path" : "$Data", 
+                            "preserveNullAndEmptyArrays" : true
+                        }
+                    }, 
+                   
+                    { 
+                        "$match" : {
+                            "TenantID" : 1.0 ,
+                            "RoleID" : 1.0
+                        }
+                    }, 
+                    { 
+                        "$project" : {
+                            "_id" : 0.0, 
+                            "UserID" : 1.0, 
+                            // "Name" : {
+                            //     "$concat" : ["$Data.Modules.SubModule.Fields.FirstName"," ","$Data.Modules.SubModule.Fields.LastName"]
+                            // }, 
+                            "EmailID" : "$Email", 
+                            "FirstName" : "$Data.Modules.SubModule.Fields.FirstName", 
+                            "LastName" : "$Data.Modules.SubModule.Fields.LastName", 
+                            "DialCode" : "$DialCode", 
+                            "PhoneNumber" : "$PhoneNumber", 
+                            "LastModifiedDate" :"$Data.LastModifiedDate",
+                            "UserStatus" : {
+                                "$cond" : {
+                                    "if" : {"$eq" : ["$IsValid",true]}, 
+                                    "then" : "Active", 
+                                    "else" : "In Active"
+                                }
+                            }, 
+                            "MobileStatus" : {
+                                "$cond" : {
+                                    "if" : {"$eq" : ["$MobileValid",true]}, 
+                                    "then" : "Confirmed", 
+                                    "else" : "Not Confirmed"
+                                }
+                            }, 
+                            "EmailStatus" : {
+                                "$cond" : {
+                                    "if" : {"$eq" : ["$EmailValid",true] }, 
+                                    "then" : "Confirmed", 
+                                    "else" : "Not Confirmed"
+                                }
+                            }
+                        }
+                    },
+                    {"$skip":skip},
+                    {"$limit":limit},
+                    {"$sort":sort}
+                ];
+                let query_academic = [
+                         
+                    { 
+                        "$unwind" : {
+                            "path" : "$Modules", 
+                            "preserveNullAndEmptyArrays" : true
+                        }
+                    }, 
+                    { 
+                        "$lookup" : {
+                            "from" : "UserProfile", 
+                            "localField" : "UserID", 
+                            "foreignField" : "UserID", 
+                            "as" : "ur"
+                        }
+                    }, 
+                    { 
+                        "$match" : {
+                            "Modules.ModuleID" : 20
+                        }
+                    }, 
+                    { 
+                        "$unwind" : {
+                            "path" : "$ur", 
+                            "preserveNullAndEmptyArrays" : true
+                        }
+                    }, 
+                    { 
+                        "$unwind" : {
+                            "path" : "$ur.Modules", 
+                            "preserveNullAndEmptyArrays" : true
+                        }
+                    }, 
+                    { 
+                        "$lookup" : {
+                            "from" : "Users", 
+                            "localField" : "UserID", 
+                            "foreignField" : "UserID", 
+                            "as" : "user"
+                        }
+                    }, 
+                    { 
+                        "$project" : {
+                            "_id" : 0.0, 
+                            "UserID" : 1.0, 
+                            "FirstName" : "$ur.Modules.SubModule.Fields.FirstName", 
+                            "LastName" : "$ur.Modules.SubModule.Fields.LastName", 
+                            "PhoneNumber" : "$user.PhoneNumber", 
+                            "DialCode":"$user.DialCode",
+                            "EmailID" : "$user.Email", 
+                            // "Work" : {
+                            //     "$size" : "$Modules.SubModule.Sr"
+                            // },
+                             "AcademicDetails":{"$size":"$Modules.SubModule.Sr"},
+                            // "IDDocuments":{"$size":"$Modules.SubModule.Sr"}
+                        }
+                    }, 
+                    { 
+                        "$unwind" : {
+                            "path" : "$FirstName"
+                        }
+                    }, 
+                    { 
+                        "$unwind" : {
+                            "path" : "$LastName"
+                        }
+                    }, 
+                    { 
+                        "$unwind" : {
+                            "path" : "$Phone", 
+                            "preserveNullAndEmptyArrays" : true
+                        }
+                    }, 
+                    { 
+                        "$unwind" : {
+                            "path" : "$Email", 
+                            "preserveNullAndEmptyArrays" : true
+                        }
+                    },
+                    {
+                        "$skip":skip
+                    },
+                    {
+                        "$limit":limit
+                    },
+                    {
+                        "$sort":sort
+                    }
+                ];
+                let query_id = [
+                         
+                    { 
+                        "$unwind" : {
+                            "path" : "$Modules", 
+                            "preserveNullAndEmptyArrays" : true
+                        }
+                    }, 
+                    { 
+                        "$lookup" : {
+                            "from" : "UserProfile", 
+                            "localField" : "UserID", 
+                            "foreignField" : "UserID", 
+                            "as" : "ur"
+                        }
+                    }, 
+                    { 
+                        "$match" : {
+                            "Modules.ModuleID" : 6
+                        }
+                    }, 
+                    { 
+                        "$unwind" : {
+                            "path" : "$ur", 
+                            "preserveNullAndEmptyArrays" : true
+                        }
+                    }, 
+                    { 
+                        "$unwind" : {
+                            "path" : "$ur.Modules", 
+                            "preserveNullAndEmptyArrays" : true
+                        }
+                    }, 
+                    { 
+                        "$lookup" : {
+                            "from" : "Users", 
+                            "localField" : "UserID", 
+                            "foreignField" : "UserID", 
+                            "as" : "user"
+                        }
+                    }, 
+                    { 
+                        "$project" : {
+                            "_id" : 0.0, 
+                            "UserID" : 1.0, 
+                            "FirstName" : "$ur.Modules.SubModule.Fields.FirstName", 
+                            "LastName" : "$ur.Modules.SubModule.Fields.LastName", 
+                            "PhoneNumber" : "$user.PhoneNumber", 
+                            "DialCode":"$user.DialCode",
+                            "EmailID" : "$user.Email", 
+                            // "Work" : {
+                            //     "$size" : "$Modules.SubModule.Sr"
+                            // },
+                            // "AcademicDetails":{"$size":"$Modules.SubModule.Sr"},
+                             "IDDocuments":{"$size":"$Modules.SubModule.Sr"}
+                        }
+                    }, 
+                    { 
+                        "$unwind" : {
+                            "path" : "$FirstName"
+                        }
+                    }, 
+                    { 
+                        "$unwind" : {
+                            "path" : "$LastName"
+                        }
+                    }, 
+                    { 
+                        "$unwind" : {
+                            "path" : "$Phone", 
+                            "preserveNullAndEmptyArrays" : true
+                        }
+                    }, 
+                    { 
+                        "$unwind" : {
+                            "path" : "$Email", 
+                            "preserveNullAndEmptyArrays" : true
+                        }
+                    },
+                    {
+                        "$skip":skip
+                    },
+                    {
+                        "$limit":limit
+                    },
+                    {
+                        "$sort":sort
+                    }
+                ];
+                let query_work = [
+                         
+                    { 
+                        "$unwind" : {
+                            "path" : "$Modules", 
+                            "preserveNullAndEmptyArrays" : true
+                        }
+                    }, 
+                    { 
+                        "$lookup" : {
+                            "from" : "UserProfile", 
+                            "localField" : "UserID", 
+                            "foreignField" : "UserID", 
+                            "as" : "ur"
+                        }
+                    }, 
+                    { 
+                        "$match" : {
+                            "Modules.ModuleID" : 10
+                        }
+                    }, 
+                    { 
+                        "$unwind" : {
+                            "path" : "$ur", 
+                            "preserveNullAndEmptyArrays" : true
+                        }
+                    }, 
+                    { 
+                        "$unwind" : {
+                            "path" : "$ur.Modules", 
+                            "preserveNullAndEmptyArrays" : true
+                        }
+                    }, 
+                    { 
+                        "$lookup" : {
+                            "from" : "Users", 
+                            "localField" : "UserID", 
+                            "foreignField" : "UserID", 
+                            "as" : "user"
+                        }
+                    }, 
+                    { 
+                        "$project" : {
+                            "_id" : 0.0, 
+                            "UserID" : 1.0, 
+                            "FirstName" : "$ur.Modules.SubModule.Fields.FirstName", 
+                            "LastName" : "$ur.Modules.SubModule.Fields.LastName", 
+                            "PhoneNumber" : "$user.PhoneNumber", 
+                            "DialCode":"$user.DialCode",
+                            "EmailID" : "$user.Email", 
+                            "Work" : {
+                                "$size" : "$Modules.SubModule.Sr"
+                            }
+                             //"AcademicDetails":{"$size":"$Modules.SubModule.Sr"},
+                            // "IDDocuments":{"$size":"$Modules.SubModule.Sr"}
+                        }
+                    }, 
+                    { 
+                        "$unwind" : {
+                            "path" : "$FirstName"
+                        }
+                    }, 
+                    { 
+                        "$unwind" : {
+                            "path" : "$LastName"
+                        }
+                    }, 
+                    { 
+                        "$unwind" : {
+                            "path" : "$Phone", 
+                            "preserveNullAndEmptyArrays" : true
+                        }
+                    }, 
+                    { 
+                        "$unwind" : {
+                            "path" : "$Email", 
+                            "preserveNullAndEmptyArrays" : true
+                        }
+                    },
+                    {
+                        "$skip":skip
+                    },
+                    {
+                        "$limit":limit
+                    },
+                    {
+                        "$sort":sort
+                    }
+                ];
+                //Aggregate Query
+                let Data = await mongo.actual.collection(this.usr).aggregate(query_main).toArray();
+ 
+              let Data_ad = await mongo.actual.collection(this.usrprof).aggregate(query_academic).toArray();
+              let Data_id = await mongo.actual.collection(this.usrprof).aggregate(query_id).toArray();
+              let Data_wd = await mongo.actual.collection(this.usrprof).aggregate(query_work).toArray();
+
+              for(let i=0;i<Data.length;i++){
+                  for(let a=0;a<Data_ad.length;a++){
+                      if(Data[i].EmailID==Data_ad[a].EmailID[0]){
+                          Data[i]["AcademicDetails"]=Data_ad[a]["AcademicDetails"]
+                      }
+                  }
+                  for(let b=0;b<Data_wd.length;b++){
+                    if(Data[i].EmailID==Data_wd[b].EmailID[0]){
+                        Data[i]["Work"]=Data_wd[b]["Work"]
+                    }
+                }
+                for(let c=0;c<Data_id.length;c++){
+                    if(Data[i].EmailID==Data_id[c].EmailID[0]){
+                        Data[i]["IDDocuments"]=Data_id[c]["IDDocuments"]
+                    }
+                }
+
+                  
+                  }
+                  
+
+              
+              
+           
+             
+
+              
+                    
+
+              if (Data.length>0){
+                return {"Success":true,"Message":"Data found successfully","Payload": Data }
+              }else{
+                return {"Success":false,"Message":"No Data Found","Payload":[] }
+              }
+           }
+           else{
+            return {"Success":false,"Message":"Wrong QID sent","Payload":[] }   
+           }    
+        }else{
+            return {"Success":false,"Message":"Wrong Action Type","Payload":[] }
+        }  
+       
+    }catch(e){
+             return {"Success":false,"Error": e.toString(),"Payload":[] }
+        }
+    }
+//internal admin api for searching various Corporate users(Active, In Active etc) for verification
+async corporate(bodyInfo){
+    try{
+        if(bodyInfo.Action == 1){
+            let Data = await mongo.actual.collection(this.queries).find({ "QID": { $gt: 4,$lt:8} },{fields:{'_id':0,'Query':0, 'TenantID':0,'RoleID':0}}).toArray();
+
+            if(Data.length > 0){
+                return {"Success":true,"Message":"Data found successfully","Payload": Data }
+            }else{
+                return {"Success":false,"Message":"No Data Found","Payload":[] }
+            }
+        }
+        var skip = bodyInfo.Skip
+        var limit = bodyInfo.Limit
+        if(limit <= 0){
+            return {"Success":false,"Message":"Limit should be positive","Payload":[] }
+        }
+        var sort = bodyInfo.Sort
+        let query;
+        if(bodyInfo.Action == 2){
+            if(bodyInfo.QID == 5){ //All Coporate users
+                query = [
+                    { 
+                        "$match" : {
+                            "TenantID" : 1.0, 
+                            "RoleID" : 2.0,
+                            "IsProcessed": false
+                        }
+                    }, 
+                    { 
+                        "$lookup" : {
+                            "from" : "Users", 
+                            "localField" : "UserID", 
+                            "foreignField" : "UserID", 
+                            "as" : "Data"
+                        }
+                    }, 
+                    { 
+                        "$unwind" : {
+                            "path" : "$Data", 
+                            "preserveNullAndEmptyArrays" : true
+                        }
+                    }, 
+                    { 
+                        "$project" : {
+                            "_id" : 0.0, 
+                            "CreatedBy" : "$Data.Email", 
+                            "OrgValID":1.0, 
+                            "OrgID":1.0,
+                            "OrgType":1,
+                            "ModifiedDate":"$Data.ModifiedDate",
+                            "Name" : 1.0, 
+                            // "ContactNumber":1,
+                            "ShortName" : 1.0, 
+                            "ContactNumber1" : {
+                                "$arrayElemAt" : [
+                                    "$ContactNumber.value", 
+                                    0.0
+                                ]
+                            }, 
+                            "ContactNumber2" : {
+                                "$arrayElemAt" : [
+                                    "$ContactNumber.value", 
+                                    1.0
+                                ]
+                            }, 
+                            "ContactNumber3" : {
+                                "$arrayElemAt" : [
+                                    "$ContactNumber.value", 
+                                    2.0
+                                ]
+                            }, 
+                            "Email" : "$Data.Email", 
+                            "City" : 1.0, 
+                            "Organization ID" : 1.0, 
+                            "IsValid" : {
+                                "$cond" : {
+                                    "if" : {
+                                        "$eq" : [
+                                            "$IsValid", 
+                                            true
+                                        ]
+                                    }, 
+                                    "then" : "Valid", 
+                                    "else" : "In Valid"
+                                }
+                            }
+                        }
+                    },
+                    {
+                        "$skip":skip
+                    },
+                    {
+                        "$limit":limit
+
+                    },
+                ]
+                
+                let Data = await mongo.actual.collection(this.OrgVal).aggregate(query).toArray();
+            
+                if (Data.length>0){
+                     return {"Success":true,"Message":"Data found successfully","Payload": Data }
+                }else{
+                    return {"Success":false,"Message":"No Data Found","Payload":[] }
+                }
+            }
+            else if(bodyInfo.QID == 6){ //For Individual Sign-Up
+                
+                query = 
+                        [
+                            {
+                                $match: {
+                                    "TenantID": 1,
+                                    "RoleID":1,
+                                    "IsProcessed": false
+                                }
+                            },
+                            {
+                                $lookup: {
+                                    from: "UserProfile",
+                                    localField: "UserID",
+                                    foreignField: "UserID",
+                                    as: "Data1"
+                                }
+                            },
+                            {
+                                $unwind: {
+                                    path : "$Data1",
+                                    preserveNullAndEmptyArrays : false
+                                }
+                            },
+                            {
+                                $lookup: {
+                                    from: "Users",
+                                    localField: "UserID",
+                                    foreignField: "UserID",
+                                    as: "Data2"
+                                }
+                            },
+                            {
+                                $unwind: {
+                                    path : "$Data2",
+                                    preserveNullAndEmptyArrays : false
+                                }
+                            },
+                            {
+                                $project: {
+                                    "_id":0,
+                                    "OrganizationName": "$Name",
+                                    "ModuleID": 1,
+                                    "Sr":1,
+                                    "RoleID":1,
+                                    "Data1":1,
+                                    "EmailID":"$Data2.Email",
+                                    "UserID":1,
+                                    "PhoneNumber": "$Data2.PhoneNumber",
+                                    "OrgValID": 1,
+                                    "OrgType":1,
+                                    
+                                }
+                            },
+                            {
+                                "$skip":skip
+                            },
+                            {
+                                "$limit":limit
+                            }
+                    
+                        ];
+                    
+                let Data = await mongo.actual.collection(this.OrgVal).aggregate(query).toArray();
+            
+                if (Data.length>0){
+                    for (var i=0; i<Data.length; i++){
+                        var id = Data[i].ModuleID
+                        var Flag = false
+                        var mod  = await mongo.control.collection(this.modules).findOne({"ModuleID": id}, {fields:{"_id":0, "Name":1}})
+                        if (mod){
+                            Data[i]['Module'] = mod.Name
+                        }
+                        if(Data[i].Data1){
+                                if(Data[i].Data1.Modules){
+                                    for (var j =0; j< Data[i].Data1.Modules.length; j++){
+                                        if (Data[i].Data1.Modules[j].ModuleID == 8) {
+                                            Flag = true
+                                            for (var k=0; k<Data[i].Data1.Modules[j].SubModule.length; k++){
+                                                    if (Data[i].Data1.Modules[j].SubModule[k].Sr == 1){
+                                                        Data[i]["Name"] = Data[i].Data1.Modules[j].SubModule[k].Fields.FirstName + ' '+ Data[i].Data1.Modules[j].SubModule[k].Fields.LastName
+                                                        // Data[i]["LastName"] = Data[i].Data1.Modules[j].SubModule[k].Fields.LastName
+                                                        break
+                                                    }
+                                                    else{
+                                                        Data[i]["Name"] = "Not Available"
+                                                        // Data[i]["LastName"] = "Not Available"
+                                                    }
+                                                
+                                            }
+                                        }
+                                    }
+                                }
+                        }
+                        else{
+                            Data[i]["Name"] = "Not Available"
+                            // Data[i]["LastName"] = "Not Available"
+                        }
+                        if(Flag == false){
+                            Data[i]["Name"] = "Not Available"
+                        }
+                    }
+                    return {"Success":true,"Message":"Data found successfully","Payload": Data }
+                }else{
+                    return {"Success":false,"Message":"No Data Found","Payload":[] }
+                }
+            }else if(bodyInfo.QID == 7){// For only sign up cor
+                var query1 = [
+                    { 
+                        "$match": { "TenantID": 1.00, "RoleID": 2.00 } 
+                    },
+                    {
+                        "$lookup": {
+                            "from": "OrganizationValidation",
+                            "localField": "UserID",
+                            "foreignField": "UserID",
+                            "as": "Data"
+                        }
+                    },
+                    { 
+                        "$unwind": { "path": "$Data", 
+                        "preserveNullAndEmptyArrays": true } 
+                    },
+                    {
+                        "$project": 
+                        {
+                            "_id":0,
+                            "data1":"$Data",
+                            "Email": "$Email",
+                            "EmailValid":"$EmailValid",
+                            "IsValid":"$IsValid",
+                            "ModifiedDate":"$ModifiedDate"
+
+                        }
+                    },
+                    {
+                        "$skip":skip
+                    },
+                    {
+                        "$limit":limit
+                    },
+                    {
+                        "$sort":{ModifiedDate:-1}
+                    }
+                ]
+                let Data = await mongo.actual.collection(this.usr).aggregate(query1).toArray();
+                if (Data.length>0){
+                    for (var i=0; i<Data.length; i++){
+                       if(Data[i].data1==undefined){
+                           Data.splice(i,1)
+                       }
+                    }
+                    return {"Success":true,"Message":"Data found successfully","Payload": Data }
+                }else{
+                    return {"Success":false,"Message":"No Data Found","Payload":[] }
+                }
+            }else{
+                return {"Success":false,"Message":"Worng QID sent","Payload":[] }
+            }
+        }
+        else if(bodyInfo.Action == 3){ //For a specific organisation's edit option 
+        
+            var query1= [
+                { "$match" : {"OrgID" : bodyInfo.OrgID} }
+            ]
+            let Data = await mongo.actual.collection(this.OrgVal).aggregate(query1).toArray();
+            if(Data.length >0){
+                return {"Success":true,"Message":"Data found successfully","Payload": Data }
+            }_    
+        }
+        else{
+            return {"Success":false,"Message":"Wrong Action type","Payload":[] }
+        }
+    
+    }catch(e){
+    
+        return {"Success":false,"Error": e.toString(),"Payload":[] }
+    }
+    }
+//Individual User Dashboard grid which displays his all records
+
+ async saverecord(bodyInfo){
+     try{
+        var roltyp =    bodyInfo.TenantData.RoleID
+            var orga = bodyInfo.TenantData.OrgID
+            var activity = bodyInfo.TenantData.Activity
+            var orgvalid = bodyInfo.TenantData.OrgValID
+            var data = bodyInfo.req
+            var dt = new Date()
+            var columns = {}
+            if (activity == 'merge'){
+                var NewOrgID = bodyInfo.TenantData.NewOrgID
+                if (NewOrgID == undefined || NewOrgID == ''){
+                    return {"Success": false, "Message": "Please select validated organization", "Payload": []}
+                }
+                var dt = new Date()
+                var data = "User"
+                var orgname = await mongo.actual.collection(this.Organiz).findOne({"OrgID": NewOrgID}, {fields:{'Name':1}})
+                if (orgname){
+                    var data = orgname.Name
+                }
+                var res = await mongo.actual.collection(this.OrgVal).updateOne({"OrgValID": orgvalid}, {'$set': {"IsProcessed": true, "OrgID": NewOrgID, "IsValid": true, "ValidateDate": dt}})
+
+                var usr = await mongo.actual.collection(this.OrgVal).findOne({"OrgValID": orgvalid}, {fields:{'_id':0, "UserID":1}})
+                if (usr){
+                    var user = usr.UserID
+                    var check = await mongo.actual.collection(this.usr).findOne({"UserID": new ObjectID(user), "TenantID": bodyInfo.TenantData.TenantID})
+                    var temp =false
+                    var orgrole = await mongo.actual.collection(this.usr).find({"OrgID": NewOrgID, "TenantID": bodyInfo.TenantData.TenantID}, {fields:{'_id':0}}).toArray();
+                    if (orgrole.length>0){
+                            for (var i= 0; i<orgrole.length; i++){
+                                if (orgrole[i].RoleID == 2){
+                                    await mongo.actual.collection(this.usr).updateOne({"UserID": new ObjectID(orgrole[i].UserID), "TenantID": bodyInfo.TenantData.TenantID}, {"$set": {"OrgID": NewOrgID}})
+                                    temp = true
+                                }    
+                            }
+                    }
+                    else{
+                        await mongo.actual.collection(this.usr).updateOne({"UserID": new ObjectID(user), "TenantID": bodyInfo.TenantData.TenantID}, {"$set": {"OrgID": NewOrgID, "RoleID": 2}})
+                    }
+                    var usrmail = await mongo.actual.collection(this.usr).findOne({"UserID": new ObjectID(user)}, {fields:{'Email':1}})
+                    if (usrmail){
+                        var Email = usrmail.Email
+                    }
+                    if (temp == false){
+                        await mongo.actual.collection(this.usr).updateOne({"UserID": new ObjectID(user), "TenantID": bodyInfo.TenantData.TenantID}, {"$set": {"OrgID": NewOrgID, "RoleID": 2}})
+                    }
+                    if (Email){
+                        var ActivityID = 11
+                        var ServiceID = 102
+                        var TenanatID = bodyInfo.TenantData.TenantID
+                        var sendm = await new sendmail().sendmail(Email, data, ActivityID, TenanatID,ServiceID)
+                    }
+                    return {"Success": true, "Message": "Organization Updated successfully", "Payload":[]}
+                }   
+            }
+            if (activity == 'discard'){
+                var usr = await mongo.actual.collection(this.OrgVal).findOne({"OrgValID": orgvalid}, {fields:{'_id':0, "UserID":1}})
+                if (usr){
+                    var user = usr.UserID
+                    var check = await mongo.actual.collection(this.usr).findOne({"UserID": new ObjectID(user), "TenantID": bodyInfo.TenantData.TenantID})
+                    if (check){
+                        //mail send code.
+                        await mongo.actual.collection(this.usr).deleteOne({"UserID": new ObjectID(user), "TenantID": bodyInfo.TenantData.TenantID})
+
+                        await mongo.actual.collection(this.orgval).updateOne({"OrgValID": orgvalid}, {'$set':{'IsProcessed':true, "ProcessedDate": dt}})
+
+                        return {"Success": true, "Message": "Discard successfully", "Payload": []}
+                    }
+                    else{
+                        return {"Success": false, "Message": "No user available", "Payload": []}
+                    }
+                }
+            }
+            if (activity == 'update'){
+                if (orgvalid == undefined || orgvalid == null){
+                    return {"Success": false, "Message": "Organization Validation ID cannot be empty"}
+                }
+                var mod = bodyInfo.TenantData.ModuleID
+                var sr = bodyInfo.TenantData.Sr
+                var NewOrgID = bodyInfo.TenantData.NewOrgID
+                var user = bodyInfo.TenantData.UserID
+                var role = bodyInfo.TenantData.RoleID
+                var tenid = bodyInfo.TenantData.TenanatID
+                var lis = {"Modules.ModuleID": mod, "Modules.SubModule.Sr":sr}
+                var fil = {"UserID": new ObjectID(user), "Modules.ModuleID": mod, "Modules.SubModule.Sr":sr}
+            
+                //update record in userprofile
+                // var test = await mongo.actual.collection(this.usrprof).updateOne(fil,{'$set': {"Modules.SubModule.Fields.Organization.OrgID": NewOrgID}})
+                                                                                                
+                // //update OrgID in Facts
+                // var fct = await mongo.actual.collection(this.facts).updateOne({"OwnerID": new ObjectID(user), "ModuleID": mod, "Sr":sr, "TenantID":tenid}, {'$set': {"VerifierOrgID": NewOrgID, "IsValid":true}})           
+            
+            }
+            if (activity == "valid") {
+                
+                var roltyp = bodyInfo.TenantData.RoleID
+                var orga = bodyInfo.TenantData.OrgID
+                var orgvalid = bodyInfo.TenantData.OrgValID
+
+                for (var i = 0; i < data.length; i++) {
+                    var column_name = data[i].Key
+                    var column_value = data[i][data[i].Key]
+                    columns[column_name] = column_value
+                }
+
+                var insertdata = Object.assign(columns)
+                insertdata["IsValid"] = true
+                // insertdata["InCorporationDate"] = new Date()
+                insertdata["TenantID"] = bodyInfo.TenantData.TenantID
+                // insertdata["RoleID"] = roltyp
+                insertdata["IsProcessed"] = true
+                var OrgId_new = await new keys().getorgid(bodyInfo.TenantData.TenantID)
+
+                insertdata["OrgID"] = OrgId_new
+                insertdata["ModifiedDate"]=new Date()
+
+                await mongo.actual.collection(this.Organiz).insertOne(insertdata)
+                var dt = new Date()
+
+                var orgvaldata = await mongo.actual.collection(this.OrgVal).findOne({"OrgValID": orgvalid}, {fields:{'_id':0}})
+                
+                if (orgvaldata){
+                    var mod = orgvaldata.ModuleID
+                    var sr = orgvaldata.Sr
+                    var user = orgvaldata.UserID
+                    var role = orgvaldata.RoleID
+                    var tenid = orgvaldata.TenantID
+                    var subsr = orgvaldata.SubSr
+                    var Flag = false
+                    if (subsr!=undefined){
+                        var fct = await mongo.actual.collection(this.facts).updateOne({"OwnerID": new ObjectID(user), "ModuleID": mod, "Sr":sr, "TenantID":tenid, "SubSr":subsr}, {'$set': {"VerifierOrgID": OrgId_new, "IsOrgValid":1 }})
+                        Flag = true
+                    }
+                    else{
+                        var fct = await mongo.actual.collection(this.facts).updateOne({"OwnerID": new ObjectID(user), "ModuleID": mod, "Sr":sr, "TenantID":tenid, "SubModuleType":1}, {'$set': {"VerifierOrgID": OrgId_new, "IsOrgValid":1 }})
+                    }
+                    // User Profile Update
+                    var fil = { "UserID": new ObjectID(user), "TenantID": bodyInfo.TenantData.TenantID}
+                    let submoduleexist = await mongo.actual.collection(this.usrprof).find(fil, { fields: { "Modules": 1 } }).toArray();
+                    if (submoduleexist.length > 0) {
+                        var fil = { "UserID": new ObjectID(user.toString()), "TenantID": bodyInfo.TenantData.TenantID, Modules: { $elemMatch: { "ModuleID": mod, "SubModule.Sr":sr} } }
+
+                    // var filt = { "UserID": new ObjectID(user), "TenantID": bodyInfo.TenantData.TenantID, "Modules.ModuleID": mod, "Modules.SubModule.Sr": sr }
+                                // for (var upsub = 0; upsub < submoduleexist[0].Modules[0].SubModule.length; upsub++) {
+                                //     if (submoduleexist[0].Modules[0].SubModule[upsub].Sr == sr) {
+                                //         submoduleexist[0].Modules[0].SubModule[upsub].Fields.Organization = OrgId_new
+                                //     }
+                                // }
+                                // // await mongo.actual.collection(this.usrprof).updateOne(fil, { "$set": { "Modules.$.SubModule": submoduleexist[0].Modules[0].SubModule } }, { "fields": { "Modules": 1 } });
+                                // await mongo.actual.collection(this.usrprof).updateOne(fil, { "$set": { "Modules.$.SubModule": submoduleexist[0].Modules[0].SubModule } }, { "fields": { "Modules.$": 1 } });
+
+                                if (Flag == true){
+                                    for (var upmod = 0; upmod < submoduleexist[0].Modules.length; upmod++) {
+                                        if (submoduleexist[0].Modules[upmod].ModuleID == mod){
+                                            for (var upsub = 0; upsub < submoduleexist[0].Modules[upmod].SubModule.length; upsub++) {
+                                            if (submoduleexist[0].Modules[upmod].SubModule[upsub].Sr == sr) {
+                                                for (var upsubsr = 0; upsubsr < submoduleexist[0].Modules[upmod].SubModule[upsub].Fields.Project.length; upsubsr++) {
+                                                    if (submoduleexist[0].Modules[upmod].SubModule[upsub].Fields.Project[upsubsr].Sr == subsr) {
+                                                        submoduleexist[0].Modules[upmod].SubModule[upsub].Fields.Project[upsubsr].Fields.Organization = OrgId_new
+                                                        break
+                                                    }
+                                                }
+                                                break
+                                            } 
+                                        }
+                                        break
+                                    }
+                                    }
+                                }
+                                else {
+                                    for (var upmod = 0; upmod < submoduleexist[0].Modules.length; upmod++) {
+                                    if (submoduleexist[0].Modules[upmod].ModuleID == mod){
+                                        for (var upsub = 0; upsub < submoduleexist[0].Modules[upmod].SubModule.length; upsub++) {
+                                        if (submoduleexist[0].Modules[upmod].SubModule[upsub].Sr == sr) {
+                                            submoduleexist[0].Modules[upmod].SubModule[upsub].Fields.Organization = OrgId_new
+                                            break
+                                        } 
+                                    }
+                                    break
+                                }
+                                }
+                            }
+                               
+                                // await mongo.actual.collection(this.usrprof).updateOne(fil, { "$set": { "Modules.$.SubModule": submoduleexist[0].Modules[0].SubModule } }, { "fields": { "Modules": 1 } });
+                                await mongo.actual.collection(this.usrprof).updateOne(fil, { "$set": { "Modules.$.SubModule": submoduleexist[0].Modules[upmod].SubModule } }, { "fields": { "Modules.$": 1 } });
+                                await mongo.actual.collection(this.usrprof).updateOne({"UserID":new ObjectID(fil.UserID) },{"$set":{"LastModifiedDate":new Date()}})
+
+                }        
+                var upd = await mongo.actual.collection(this.OrgVal).updateOne({ "OrgValID": orgvalid }, { '$set': { 'IsValid': true, "OrgID": OrgId_new, "ValidateDate": dt, "IsProcessed": true} })
+                if (upd) {
+                    return { "Success": true, "Message": "Organization and Record Validated Successfully", "Payload": [] }
+                }
+                else {
+                    return { "Success": false, "Message": upd.toString(), "Payload": [] }
+                }
+
+            }
+            }
+            if (activity == 'mergerec'){
+                if (orgvalid == undefined || orgvalid == ''){
+                    return {"Success": false, "Message": "Please select validated organization", "Payload": []}
+                }
+                if (orga == undefined || orga == ''){
+                    return {"Success": false, "Message": "Please select validated organization", "Payload": []}
+                }
+
+                var orgvaldata = await mongo.actual.collection(this.OrgVal).findOne({"OrgValID": orgvalid}, {fields:{'_id':0}})
+                if (orgvaldata){
+                    var mod = orgvaldata.ModuleID
+                    var sr = orgvaldata.Sr
+                    var user = orgvaldata.UserID
+                    var role = orgvaldata.RoleID
+                    var tenid = orgvaldata.TenantID
+                    var subsr = orgvaldata.SubSr
+                    var Flag = false
+                    if (subsr!=undefined){
+                        var fct = await mongo.actual.collection(this.facts).updateOne({"OwnerID": new ObjectID(user), "ModuleID": mod, "Sr":sr, "TenantID":tenid, "SubSr":subsr}, {'$set': {"VerifierOrgID": orga, "IsOrgValid":1 }})
+                        Flag = true
+
+                    }
+                    else{
+                        var fct = await mongo.actual.collection(this.facts).updateOne({"OwnerID": new ObjectID(user), "ModuleID": mod, "Sr":sr, "TenantID":tenid, "SubModuleType":1}, {'$set': {"VerifierOrgID": orga, "IsOrgValid":1 }})
+                    }
+                    // User Profile Update
+                    var fil = { "UserID": new ObjectID(user), "TenantID": bodyInfo.TenantData.TenantID}
+                    let submoduleexist = await mongo.actual.collection(this.usrprof).find(fil, { fields: { "Modules": 1 } }).toArray();
+
+                    if (submoduleexist.length > 0) {
+                        var fil = { "UserID": new ObjectID(user.toString()), "TenantID": bodyInfo.TenantData.TenantID, Modules: { $elemMatch: { "ModuleID": mod, "SubModule.Sr":sr} } }
+
+                    
+                        if (Flag == true){
+                            for (var upmod = 0; upmod < submoduleexist[0].Modules.length; upmod++) {
+                                if (submoduleexist[0].Modules[upmod].ModuleID == mod){
+                                    for (var upsub = 0; upsub < submoduleexist[0].Modules[upmod].SubModule.length; upsub++) {
+                                    if (submoduleexist[0].Modules[upmod].SubModule[upsub].Sr == sr) {
+                                        for (var upsubsr = 0; upsubsr < submoduleexist[0].Modules[upmod].SubModule[upsub].Fields.Project.length; upsubsr++) {
+                                            if (submoduleexist[0].Modules[upmod].SubModule[upsub].Fields.Project[upsubsr].Sr == subsr) {
+                                                submoduleexist[0].Modules[upmod].SubModule[upsub].Fields.Project[upsubsr].Fields.Organization = orga
+                                                break
+                                            }
+                                        }
+                                        break
+                                    } 
+                                }
+                                break
+                            }
+                            }
+                        }
+                        else {
+                            for (var upmod = 0; upmod < submoduleexist[0].Modules.length; upmod++) {
+                            if (submoduleexist[0].Modules[upmod].ModuleID == mod){
+                                for (var upsub = 0; upsub < submoduleexist[0].Modules[upmod].SubModule.length; upsub++) {
+                                if (submoduleexist[0].Modules[upmod].SubModule[upsub].Sr == sr) {
+                                    submoduleexist[0].Modules[upmod].SubModule[upsub].Fields.Organization = orga
+                                    break
+                                } 
+                            }
+                            break
+                        }
+                        }
+                    }                 
+                        await mongo.actual.collection(this.usrprof).updateOne(fil, { "$set": { "Modules.$.SubModule": submoduleexist[0].Modules[upmod].SubModule} }, { "fields": { "Modules.$": 1 } });
+                        await mongo.actual.collection(this.usrprof).updateOne({"UserID":new ObjectID(fil.UserID) },{"$set":{"LastModifiedDate":new Date()}})
+
+                    }        
+      
+                var upd = await mongo.actual.collection(this.OrgVal).updateOne({ "OrgValID": orgvalid }, { '$set': { 'IsValid': true, "OrgID": orga, "ValidateDate": dt, "IsProcessed": true} })
+                if (upd) {
+                    return { "Success": true, "Message": "Organization and Record Validated Successfully", "Payload": [] }
+                }
+                else {
+                    return { "Success": false, "Message": upd.toString(), "Payload": [] }
+                }
+            }
+
+            }
+            if (activity == 'discardrec'){
+                var usr = await mongo.actual.collection(this.OrgVal).findOne({"OrgValID": orgvalid}, {fields:{'_id':0, "UserID":1}})
+                if (usr){
+                        //mail send code.
+                        await mongo.actual.collection(this.orgval).updateOne({"OrgValID": orgvalid}, {'$set':{'IsProcessed':true, "ProcessedDate": dt}})
+
+                        return {"Success": true, "Message": "Discarded successfully", "Payload": []}
+                    
+                }else{
+                        return {"Success": false, "Message": "No user/record found", "Payload": []}
+                    }
+                }
+            
+
+
+     }catch(e){
+        return {"Success":false,"Error": e.toString(),"Payload":[] }
+     }
+    }
+
+}
+
+module.exports= Organization

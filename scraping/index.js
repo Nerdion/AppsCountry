@@ -1,34 +1,9 @@
-const puppeteer = require('puppeteer');
+var GoogleSearch = require('./models/GoogleSearch');
 
-let appName = 'TikTok';
+ async()=> {
+     
+        console.log("Errorasdsa")
+        var data = await new GoogleSearch().getSearchData()
+        console.log(data)
 
-(async () => {
-    let url = "https://google.com/search?q=" + appName;
-    const browser = await puppeteer.launch();
-    const page = await browser.newPage();
-    await page.setViewport({
-        width: 1080,
-        height: 720,
-        deviceScaleFactor: 1,
-      });
-    await page.goto(url,{waitUntil: 'networkidle2'});
-    await page.screenshot({path: 'ss/example.png'});
-
-    let myData = await page.evaluate(() => {
-        let topResults = document.querySelectorAll('.st');
-        let appDescription = document.querySelector('#kp-wp-tab-overview > div:nth-child(1)');
-        var result = [];
-        for(let i=0; i<topResults.length; i++) {
-            result.push(topResults[i].innerText);
-        }
-
-        result.push(appDescription);
-
-        return {
-            result
-        }
-    });
-
-    console.log(myData);
-    await browser.close();
-})();
+}
