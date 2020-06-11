@@ -10,7 +10,7 @@ module.exports =  class GoogleSearch {
 	}
 
 	async getSearchData() {
-		let appName = 'TikTok';
+		let appName = 'com.brave.browser';
 		let url = "https://google.com/search?q=" + appName;
 		const browser = await puppeteer.launch();
 		const page = await browser.newPage();
@@ -34,8 +34,8 @@ module.exports =  class GoogleSearch {
 				result
 			}
 		});
-
-		console.log("result", myData)
+		
+        await browser.close();
 		return myData;
 	}
 

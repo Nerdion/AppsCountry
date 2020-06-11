@@ -20,18 +20,22 @@ module.exports =  class PlayStore {
             return document.querySelectorAll("a[href*='/store/apps/dev']")[0].textContent;
         });
         
-        var appInfo = await page.evaluate(() => {
-            var myVar = Array.from(document.querySelectorAll('.hAyfc:last-child > span > div > span > div').map(
-                myData => myData.innerText.trim()
-            ));
-
-            return {
-                myVar
-            }
+        var appDetails = await page.evaluate(() => {
+            var myData = document.querySelectorAll('.hAyfc:last-child > span > div > span > div');
+            var finalData = {};
+            myData.forEach(function (e) {
+                if(e.innerText == "Visit website") {
+                    finalData["websiteLink"] = e.querySelector('a').href;
+                }
+            });
+            finalData["address"] = myData[myData.length-1].innerText;
+            console.log(finalData);
+            return finalData;
         });
 
-        await console.log(appInfo);
-        await console.log(developerName);
+        //console.log({"devName" : developerName, "websiteLink" : appDetails.websiteLink, "address" : appDetails.address});
+        
         await browser.close();
+        return {"devName" : developerName, "websiteLink" : appDetails.websiteLink, "address" : appDetails.address};
     }
 }
