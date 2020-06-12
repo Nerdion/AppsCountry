@@ -13,11 +13,11 @@ async function myFunc() {
 	var t1 = console.time()
 	//var data =  await gs.getSearchData()
 	//var playStoreData = await new PlayStore().getPlayStoreInfo();
-	var googleSearch = await new GoogleSearch(browser,page).getSearchTermsResult("TikTok", browser);
+	var googleSearch = await new GoogleSearch(browser,page).getSearchTermsResult("Xender");
 
 	//console.log(playStoreData);
-	//console.log(googleSearch);
-	var countryData=await new GoogleSearch().getCountryName()
+	console.log(googleSearch);
+	//var countryData=await new GoogleSearch().getCountryName()
 	await browser.close();
 	console.timeEnd()
 

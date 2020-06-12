@@ -10,7 +10,7 @@ module.exports = class GoogleSearch {
 		var resultData = [];
 		var searchterm = ["", "country", "headquarters country", "owners country", "parent company"];
 		var priority = [0.1, 0.3, 0.4, 0.6, 0.8]
-		for (let i = 0; i < 1; i++) {
+		for (let i = 0; i < searchterm.length; i++) {
 			let data = await this.getSearchData(name + " " + searchterm[i])
 			let a = `${searchterm[i]}_Result`;
 			resultData.push({
@@ -35,7 +35,9 @@ module.exports = class GoogleSearch {
 			for (let i = 0; i < topResults.length; i++) {
 				result.push(topResults[i].innerText);
 			}
-			result.push(appDescription);
+			if(appDescription!=null){
+				result.push(appDescription.innerText);
+			}
 			return result
 		});
 
@@ -50,13 +52,25 @@ module.exports = class GoogleSearch {
 			var phraseData = result[i].Result;
 			for (let j = 0; j < phraseData.length; j++) {
 				if (phraseData[j] != '') {
-					data.push(countryDetector.detect(phraseData[j]))
+					let data1=countryDetector.detect(phraseData[j])
+					if(data1.length!=0){
+						data.push(data1[0].iso3166.substring(0, 2))
+					}else{
+						phraseData.splice(j,1)
+						j--;	
+					}
+				}else{
+					phraseData.splice(j,1)
+					j--;
 				}
 			}
+			var countrycode=await this.frequency(data)
+			result[i]['CountryCode']=countrycode
 		}
-		return country;
+		return result;
 	}
-	async hellWorld() {
-		await console.log("working");
+	async frequency(arr) {
+		var data=arr.sort((a,b) =>arr.filter(v => v===a).length- arr.filter(v => v===b).length).pop();
+		return data
 	}
 };
