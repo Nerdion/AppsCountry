@@ -1,10 +1,10 @@
 1.
 
-1)dev "company":[0.1]
+1)dev "company":[0.3]
 2)dev "company" country:[0.3]
 3)dev "company" headq country:[0.4]
 4)dev "company" owner country:[0.6]
-5)dev "company" parent company[0.8]
+5)dev "company" parent company[0.6]
     parent_company name
     1..4
 

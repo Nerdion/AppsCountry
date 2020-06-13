@@ -1,5 +1,4 @@
-const countryDetector = require("country-in-text-detector");
-
+const countryDetector = require("../country-detector/index");
 module.exports = class GoogleSearch {
 	constructor(browser, page) {
 		this.browser = browser
@@ -8,8 +7,8 @@ module.exports = class GoogleSearch {
 
 	async getSearchTermsResult(name) {
 		var resultData = [];
-		var searchterm = ["", "country", "headquarters country", "owners country", "parent company"];
-		var priority = [0.1, 0.3, 0.4, 0.6, 0.8]
+		var searchterm = ["", "country", "headquarters country", "owner headquarter country", "parent company country","parent company headquarter"];
+		var priority = [0.3, 0.3, 0.4, 0.6, 0.6,0.6]
 		for (let i = 0; i < searchterm.length; i++) {
 			let data = await this.getSearchData(name + " " + searchterm[i])
 			let a = `${searchterm[i]}_Result`;
@@ -32,10 +31,14 @@ module.exports = class GoogleSearch {
 			let topResults = document.querySelectorAll('.st');
 			let appDescription = document.querySelector('#kp-wp-tab-overview > div:nth-child(1)');
 			var result = [];
-			for (let i = 0; i < topResults.length; i++) {
-				result.push(topResults[i].innerText);
+			var k=0
+			for (let i = 0; i < topResults.length && k < 5; i++) {
+				if(topResults[i].innerText!=''){
+					result.push(topResults[i].innerText);
+					k++;
+				}
 			}
-			if(appDescription!=null){
+			if(appDescription!=null && appDescription.innerText.search("People also search for") == -1){
 				result.push(appDescription.innerText);
 			}
 			return result
@@ -54,14 +57,17 @@ module.exports = class GoogleSearch {
 				if (phraseData[j] != '') {
 					let data1=countryDetector.detect(phraseData[j])
 					if(data1.length!=0){
-						data.push(data1[0].iso3166.substring(0, 2))
+						// data.push(data1[0].iso3166.substring(0, 2))
+						for(let k=0;k<data1.length;k++){
+							data.push(data1[k].iso3166.substring(0, 2))
+						}
 					}else{
-						phraseData.splice(j,1)
-						j--;	
+						//phraseData.splice(j,1)
+						//j--;	
 					}
 				}else{
-					phraseData.splice(j,1)
-					j--;
+					//phraseData.splice(j,1)
+					//j--;
 				}
 			}
 			var countrycode=await this.frequency(data)
