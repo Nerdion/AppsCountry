@@ -1,11 +1,12 @@
 const puppeteer = require('puppeteer');
 
 module.exports =  class PlayStore {
-    constructor() {
+    constructor(pkgname) {
+        this.packagename=pkgname
     }
 
     async getPlayStoreInfo() {
-        let url = "https://play.google.com/store/apps/details?id=" + 'com.brave.browser';
+        let url = "https://play.google.com/store/apps/details?id=" + this.packagename;
         const browser = await puppeteer.launch();
         const page = await browser.newPage();
         await page.setViewport({

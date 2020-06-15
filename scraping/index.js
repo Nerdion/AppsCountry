@@ -12,11 +12,11 @@ async function myFunc() {
 	});
 	var t1 = console.time()
 	//var data =  await gs.getSearchData()
-	//var playStoreData = await new PlayStore().getPlayStoreInfo();
-	var googleSearch = await new GoogleSearch(browser,page).getSearchTermsResult("Phone pay");
+	var playStoreData = await new PlayStore('com.brave.browser').getPlayStoreInfo();
+	//var googleSearch = await new GoogleSearch(browser,page).getSearchTermsResult(playStoreData.devName);
 
-	//console.log(playStoreData);
-	console.log(googleSearch);
+	console.log(playStoreData);
+	//console.log(googleSearch);
 	//var countryData=await new GoogleSearch().getCountryName()
 	await browser.close();
 	console.timeEnd()
