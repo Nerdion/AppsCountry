@@ -10,6 +10,7 @@
   "license": "ISC",
   "dependencies": {
     "country-in-text-detector": "^1.0.10",
+    "mongodb": "^3.5.9",
     "puppeteer": "^3.3.0"
   }
 }
