@@ -12,7 +12,8 @@ module.exports = class GooglePlayScrapper {
         var i = 0;
         var data = await gplay.categories().then((value) => {
             for (let i = 0; i < value.length; i++) {
-                let d = { Name: value[i], CategoryID: ++i }
+                var k=i
+                let d = { Name: value[i], CategoryID: ++k }
                 result.push(d)
             }
             return result

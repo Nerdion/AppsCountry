@@ -1,23 +1,35 @@
 const puppeteer = require('puppeteer');
+var Credetials =  require('./config')
 const GoogleSearch = require('./models/GoogleSearch');
 const PlayStore = require('./models/PlayStore');
 const GooglePlayScrapper = require('./models/GooglePlayScrapper')
-const mongo = require('./models/model')
 async function myFunc() {
-    try{
-      let db = await mongo.actual.collection("UserProfile").find({},{ fields: { "Name":1 }}).toArray();        
-      console.log(db,"shriyash")
-    }catch(error){
-        console.log(error)
+    var result=[]
+    var data=[]
+    var categories = await new GooglePlayScrapper().AppsCategory();
+    for(let i=0;i<1;i++){
+      let category=categories[i]["Name"]
+      var appListByCatecory=await new GooglePlayScrapper().AppsListByCategory(category)
+      for(let j=0;j<appListByCatecory.length;j++){
+        if(!data.includes(appListByCatecory[i]['developer'])){
+          data.push(appListByCatecory[j]['developer'])
+        }
+      }     
     }
-    //var data = await new GooglePlayScrapper().AppsCategory();
-   // var db = await mongo.appscountry.collection("GPlayCategory").insertMany(data)
-    // var data = await new GooglePlayScrapper().AppsListByDev('Google LLC')
+    //var db = await mongo.appscountry.collection("GPlayCategory").insertMany(data)
+    for(let k=0 ;k<data;k++){
+      let devname = data[k]
+      var data = await new GooglePlayScrapper().AppsListByDev(devname)
+      console.log("Pushed__",k)
+      result.push({DevName:devname,AppList:data})
+    }
+    //var data = await new GooglePlayScrapper().AppsListByDev('Google LLC')
     //console.log(categories)
     //for(let i=0;i<categories[0])
   //  var appsListByCategory=await new GooglePlayScrapper().AppsListByCategory('GAME_ACTION')
-    //console.log(db,"asd")
+    //console.log(db1,"asd")
   //  console.log(appsListByCategory)
-}
 
+ 
+}
 myFunc();
