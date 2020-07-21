@@ -47,7 +47,6 @@ module.exports = class GoogleSearch {
 		//await browser.close();
 		return myData;
 	}
-
 	async getCountryName(result) {
 		var country = [];
 		for (let i = 0; i < result.length; i++) {

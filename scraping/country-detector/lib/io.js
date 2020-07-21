@@ -86,6 +86,11 @@ function loadCities(){
 	return processCSV(cities);
 }
 
+function loadCompanies(){
+	var countries = loadCSV(__dirname + "/../data/companies.csv", ";");
+	return processCSV(countries);
+}
+
 function cleanFromSpecials(str) {
 	str = str.replace(SPECIAL_CHARS_REG, " ");
 	str = str.trim();
@@ -94,4 +99,5 @@ function cleanFromSpecials(str) {
 
 module.exports.loadCoutries = loadCoutries;
 module.exports.loadCities = loadCities;
+module.exports.loadCompanies = loadCompanies;
 module.exports.cleanFromSpecials = cleanFromSpecials;

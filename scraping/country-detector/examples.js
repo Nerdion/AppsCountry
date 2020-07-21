@@ -1,7 +1,7 @@
 var countryDetector = require("./index.js");
 
 // handles countries in text, result is array of matches (objects)
-var result = countryDetector.detect("Hello, I come from Germany!");
+var result = countryDetector.detect("Hello, I come from Anta Sports!");
 /*
 [
 	{ iso3166: 'DE', name: 'Germany', type: 'country', matches: [ 'Germany' ] }

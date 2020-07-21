@@ -1,6 +1,7 @@
 var io = require("./lib/io.js");
 var COUNTRIES = io.loadCoutries();
 var CITIES = io.loadCities();
+var COMPANIES = io.loadCompanies();
 
 function deletePrePostfixes(arr1, arr2){
 	var lastJ = 0;
@@ -48,6 +49,19 @@ function detect(str) {
 				name: CITIES[i].city_name,
 				countryName: CITIES[i].country_name,
 				type: "city",
+				matches: matches
+			});
+		}
+	}
+
+	for(var i = 0; i < COMPANIES.length; i++){
+		var matches = clean.match(COMPANIES[i].string_match);
+		if(!(typeof matches === "undefined" || matches === null)) {
+			matches = matches.map(function(m){return m.substring(1);});
+			result.push({
+				iso3166: COMPANIES[i]["country_iso_3166-1_alpha-2"],
+				countryName: COMPANIES[i].country_name,
+				type: "company",
 				matches: matches
 			});
 		}

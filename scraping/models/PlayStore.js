@@ -1,5 +1,5 @@
 const puppeteer = require('puppeteer');
-
+var mongo = require('./model')
 module.exports =  class PlayStore {
     constructor(pkgname) {
         this.packagename=pkgname
@@ -30,7 +30,7 @@ module.exports =  class PlayStore {
                 }
             });
             finalData["address"] = myData[myData.length-1].innerText;
-            console.log(finalData);
+            //console.log(finalData);
             return finalData;
         });
 
