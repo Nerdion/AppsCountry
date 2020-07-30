@@ -3,8 +3,8 @@ module.exports = class GooglePlayScrapper {
     constructor() {
 
     }
-    async AppsListByDev(devName) {
-        var data = gplay.developer({ devId: devName })
+    async AppsListByDev(bodyInfo) {
+        var data = gplay.developer({ devId: bodyInfo.devName })
         return data
     }
     async AppsCategory() {
@@ -20,7 +20,8 @@ module.exports = class GooglePlayScrapper {
         });
         return data
     }
-    async AppsListByCategory(category) {
+    async AppsListByCategory(bodyInfo) {
+        var category = bodyInfo.category;
         var data = gplay.list({
             category: gplay.category[category],
             collection: gplay.collection.TOP_FREE

@@ -1,5 +1,6 @@
 const puppeteer = require('puppeteer');
 var Credetials =  require('./config')
+var gplay = require('google-play-scraper');
 const GoogleSearch = require('./models/GoogleSearch');
 const PlayStore = require('./models/PlayStore');
 const GooglePlayScrapper = require('./models/GooglePlayScrapper')
@@ -32,4 +33,13 @@ async function myFunc() {
 
  
 }
-myFunc();
+async function myFunc1(){
+
+gplay.list({
+    category: gplay.category.GAME_ACTION,
+    collection: gplay.collection.TOP_FREE,
+    num: 30
+  })
+  .then(console.log, console.log);
+}
+myFunc1();
