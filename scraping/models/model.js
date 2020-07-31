@@ -8,7 +8,7 @@ var fs = require('fs');
 db_ac = Credetials.DB_AC
 url = Credetials.URL
 
-MongoClient.connect(url, { useNewUrlParser: true} , function(err, db) {
+MongoClient.connect(url, {  useUnifiedTopology: true} , function(err, db) {
   if (err) throw err;
   module.exports.appscountry = db.db(Credetials.DB_AC);
 });
