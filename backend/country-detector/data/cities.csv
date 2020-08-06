@@ -1,0 +1,1216 @@
+country_iso_3166-1_alpha-2;country_name;city_name;string_match
+AF;Afghanistan;Kabul;K[a]b[uo]l, کابل
+US-AK;Alaska;Juneau;Juneau
+AL;Albania;Tirana;Tirana, Tiran[ë], Tirona
+DZ;Algeria;Algiers;Algiers, Alger, الجزائر
+DZ;Algeria;Oran;Oran, Wahr[ā]n, وهران
+AD;Andorra;Andorra la Vella;Andorra la (Vella|Vieja), Andorre la Vieille
+AO;Angola;Luanda;L[uo]anda
+AR;Argentina;Buenos Aires;Buenos Aires
+AR;Argentina;Córdoba;C[ó]rdoba
+AR;Argentina;Rosario;Rosario
+AR;Argentina;San Juan;San Juan
+US-AZ;Arizona;Phoenix;Phoenix
+US-AZ;Arizona;Scottsdale;Scottsdale.{1,5}(Arizona|AZ), Scottsdale
+US-AZ;Arizona;Tucson;Tucson
+US-AR;Arkansas;Austin;Austin.{1,5}(Arkansas|AR)
+US-AR;Arkansas;Little Rock;Little Rock
+US-AR;Arkansas;Portland;Portland.{1,5}(Arkansas|AR)
+AM;Armenia;Yerevan;Y?erevan, Երևան
+AU;Australia;Adelaide;Adelaide
+AU;Australia;Austin;Austin.{1,5}(Australia|AU)
+AU;Australia;Brisbane;Brisbane
+AU;Australia;Canberra;Canberra
+AU;Australia;Melbourne;Melbourne
+AU;Australia;Newcastle;Newcastle.{1,5}(Australia|AU|New South Wales)
+AU;Australia;Perth;Perth
+AU;Australia;Queensland;Queensland, QLD
+AU;Australia;Scottsdale;Scottsdale.{1,5}(Tasmania|TAS|Australia|AU|Reserve)
+AU;Australia;Sydney;Sydney
+AT;Austria;Graz;Graz
+AT;Austria;Innsbruck;Innsbruck
+AT;Austria;Linz;Linz, Linec
+AT;Austria;Salzburg;Salzburg, S[å]izburg
+AT;Austria;Vienna;Vídeň, Wien, Vienna
+AZ;Azerbaijan;Baku;Baku, Bak[ı]
+AZ;Azerbaijan;Stepanakert;Step'?anakert, Khankendi, Vararakn, Ստեփանակերտ
+BD;Bangladesh;Chittagong;Chittagong, Chottogram, Chatga, চট্টগ্রাম
+BD;Bangladesh;Dhaka;Dhaka, Dacca, ঢাকা
+BY;Belarus;Minsk;Minsk, Мінск, Минск, Менск
+BE;Belgium;Antwerp;Antwerp, Antwerpen, Anvers
+BE;Belgium;Brussels;Brussels?, Bruxelles
+BO;Bolivia;Santa Cruz de la Sierra;Santa Cruz( de la Sierra)?
+BA;Bosnia and Herzegovina;Sarajevo;Sarajevo, Сарајево
+BH;Bahrain;Manama;Man[a]ma, المنامة
+BR;Brazil;Belo Horizonte;Belo Horizonte
+BR;Brazil;Brazilia;Bra[sz][i]l(ia)?
+BR;Brazil;Campinas;Campinas
+BR;Brazil;Curitiba;Curitiba
+BR;Brazil;Florianópolis;Florian[ó]polis
+BR;Brazil;Fortaleza;Fortaleza
+BR;Brazil;Goiânia;Goi[â]nia
+BR;Brazil;Porto Alegre;Porto Alegre
+BR;Brazil;Recife;Recife
+BR;Brazil;Rio de Janeiro;Rio( de Janeiro)?
+BR;Brazil;São Paulo;S[ã]o Paulo
+BG;Bulgaria;Burgas;Burgas, Bourgas, Бургас
+BG;Bulgaria;Sofia;Sofiy?a, София
+BF;Burkina Faso;Ouagadougou;Ouagadougou
+US-CA;California;Beverly Hills;Beverly Hills
+US-CA;California;Huntington Beach;Huntington Beach
+US-CA;California;Los Angeles;Los [A]ngeles
+US-CA;California;Oakland;Oakland
+US-CA;California;Norwalk;Norwalk.{1,5}(California|CA)
+US-CA;California;Palm Springs;Palm Springs
+US-CA;California;Sacramento;Sacramento
+US-CA;California;San Diego;San Diego
+US-CA;California;San Francisco;San Francisco
+US-CA;California;San José;San Jos[e]
+US-CA;California;Santa Barbara;Santa Barbara
+US-CA;California;Santa Monica;Santa Monica
+KH;Cambodia;Siem Reap;Siem Reap, ក្រុងសៀមរាប
+KH;Cambodia;Phnom Penh;Phnom Penh, Krong Chaktomuk
+CM;Cameroon;Douala;Do?uala
+CM;Cameroon;Yaoundé;Yaound[é], Jaunde
+CA;Canada;Austin;Austin.{1,5}(Canada|CA|Manitoba|Ontarion|Quebec|Island)
+CA;Canada;Calgary;Calgary
+CA;Canada;Montréal;Montr[e]al
+CA;Canada;Ottawa;Ottawa
+CA;Canada;Portland;Portland.{1,5}(Canada|CA|Ontarion)
+CA;Canada;Portland Island;Portland Island
+CA;Canada;Portland Inlet;Portland Inlet
+CA;Canada;Toronto;Toronto
+CA;Canada;Vancouver;Vancouver
+CA;Canada;Winnipeg;Winnipeg
+CL;Chile;Santiago de Chile;Santiago( de Chile)?
+CN;China;Beijing;Beijing, Peking, 北京市
+CN;China;Changchun;Changchun, 长春市
+CN;China;Changsha;Changsha, Chángshā, 长沙市
+CN;China;Chaozhou;Chaozhou, Chiuchow, Chaochow, Teochew, 潮州市
+CN;China;Chengdu;Chengdu, Chengtu
+CN;China;Chongqing;Chongqing, Chungking, 重庆
+CN;China;Dalian;Dalian, 大连市
+CN;China;Dongguan;Dongguan, 东莞市
+CN;China;Foshan;Foshan, Fatshan, 佛山市
+CN;China;Fuzhou;Fuzhou, Foochow, 福州市
+CN;China;Guangzhou;Guangzhou, Canton, 广州市
+CN;China;Hangzhou;Hangzhou, Hangchow, 杭州市
+CN;China;Harbin;Harbin, 哈尔滨市
+CN;China;Hefei;Hefei, Luzhou, Luchow, Ho-fei, Liu-tcheou, 合肥市
+CN;China;Jinan;Jinan, Tsinan
+CN;China;Lanzhou;Lanzhou, 兰州市
+CN;China;Nanjing;Nanjing, Nanking, Nankin, 南京市
+CN;China;Ningbo;Ning[bp]o, 宁波市
+CN;China;Qingdao;Qingdao, Tsingtao, 青岛市
+CN;China;Quanzhou;Quanzhou, Chinchew, 泉州市
+CN;China;Shanghai;Shanghai, 上海
+CN;China;Shantou;Shantou, Swatow, 汕头市
+CN;China;Shenyang;Shenyang, Mukden, Fengtian, 沈阳市
+CN;China;Shenzhen;Shenzhen, 深圳市
+CN;China;Shijiazhuang;Shijiazhuang, 石家庄市
+CN;China;Suzhou;Suzhou, Soochow, 苏州市
+CN;China;Tainan;Tainan City, 臺南市
+CN;China;Tangshan;Tangshan, Tángshān, 唐山市
+CN;China;Tianjin;Tianjin, Tientsin, 天津市
+CN;China;Tianjin;Tianjin, Tientsin, 天津市
+CN;China;Wenzhou;Wenzhou, 温州市
+CN;China;Wuhan;Wuhan, 武汉市
+CN;China;Xi'an;Xi'?an, 西安市
+CN;China;Xiamen;Xiamen, Amoy, 厦门市
+CN;China;Zhengzhou;Zhengzhou, 郑州市
+CN;China;Zhongshan;Zhongshan, 中山市
+CN;China;Zhuhai;Zhuhai, 珠海市
+CN;China;Zunyi;Zunyi, 遵义市
+CN;China;Aksu;Aksu,阿克苏市
+CN;China;Alashankou;Alashankou,阿拉山口市
+CN;China;Altay;Altay,阿勒泰市
+CN;China;Anda;Anda,安达市
+CN;China;Anguo;Anguo,安国市
+CN;China;Ankang;Ankang,安康市
+CN;China;Anlu;Anlu,安陆市
+CN;China;Anning;Anning,安宁市
+CN;China;Anqing;Anqing,安庆市
+CN;China;Anqiu;Anqiu,安丘市
+CN;China;Anshan;Anshan,鞍山市
+CN;China;Anshun;Anshun,安顺市
+CN;China;Anyang;Anyang,安阳市
+CN;China;Aral;Aral,阿拉尔市
+CN;China;Artux;Artux,阿图什市
+CN;China;Arxan;Arxan,阿尔山市
+CN;China;Baicheng;Baicheng,白城市
+CN;China;Baise;Baise,百色市
+CN;China;Baishan;Baishan,白山市
+CN;China;Baiyin;Baiyin,白银市
+CN;China;Baoding;Baoding,保定市
+CN;China;Baoji;Baoji,宝鸡市
+CN;China;Baoshan;Baoshan,保山市
+CN;China;Baotou;Baotou,包头市
+CN;China;Barkam;Barkam,马尔康市
+CN;China;Bayannur;Bayannur,巴彦淖尔市
+CN;China;Bazhong;Bazhong,巴中市
+CN;China;Bazhou;Bazhou,霸州市
+CN;China;Bei'an;Bei'an,北安市
+CN;China;Beihai;Beihai,北海市
+CN;China;Beijing;Beijing,北京市
+CN;China;Beiliu;Beiliu,北流市
+CN;China;Beipiao;Beipiao,北票市
+CN;China;Beitun;Beitun,北屯市
+CN;China;Beizhen;Beizhen,北镇市
+CN;China;Bengbu;Bengbu,蚌埠市
+CN;China;Benxi;Benxi,本溪市
+CN;China;Bijie;Bijie,毕节市
+CN;China;Binzhou;Binzhou,彬州市
+CN;China;Binzhou;Binzhou,滨州市
+CN;China;Bole;Bole,博乐市
+CN;China;Botou;Botou,泊头市
+CN;China;Bozhou;Bozhou,亳州市
+CN;China;Cangzhou;Cangzhou,沧州市
+CN;China;Cenxi;Cenxi,岑溪市
+CN;China;Changchun;Changchun,长春市
+CN;China;Changde;Changde,常德市
+CN;China;Changge;Changge,长葛市
+CN;China;Changji;Changji,昌吉市
+CN;China;Changning;Changning,常宁市
+CN;China;Changsha;Changsha,长沙市
+CN;China;Changshu;Changshu,常熟市
+CN;China;Changyi;Changyi,昌邑市
+CN;China;Changyuan;Changyuan,长垣市
+CN;China;Changzhi;Changzhi,长治市
+CN;China;Changzhou;Changzhou,常州市
+CN;China;Chaohu;Chaohu,巢湖市
+CN;China;Chaoyang;Chaoyang,朝阳市
+CN;China;Chaozhou;Chaozhou,潮州市
+CN;China;Chengde;Chengde,承德市
+CN;China;Chengdu;Chengdu,成都市
+CN;China;Chengjiang;Chengjiang,澄江市
+CN;China;Chenzhou;Chenzhou,郴州市
+CN;China;Chibi;Chibi,赤壁市
+CN;China;Chifeng;Chifeng,赤峰市
+CN;China;Chishui;Chishui,赤水市
+CN;China;Chizhou;Chizhou,池州市
+CN;China;Chongqing;Chongqing,重庆市
+CN;China;Chongzhou;Chongzhou,崇州市
+CN;China;Chongzuo;Chongzuo,崇左市
+CN;China;Chuxiong;Chuxiong,楚雄市
+CN;China;Chuzhou;Chuzhou,滁州市
+CN;China;Cixi;Cixi,慈溪市
+CN;China;Da'an;Da'an,大安市
+CN;China;Dali;Dali,大理市
+CN;China;Dalian;Dalian,大连市
+CN;China;Dandong;Dandong,丹东市
+CN;China;Dangyang;Dangyang,当阳市
+CN;China;Danjiangkou;Danjiangkou,丹江口市
+CN;China;Danyang;Danyang,丹阳市
+CN;China;Danzhou;Danzhou,儋州市
+CN;China;Daqing;Daqing,大庆市
+CN;China;Dashiqiao;Dashiqiao,大石桥市
+CN;China;Datong;Datong,大同市
+CN;China;Daye;Daye,大冶市
+CN;China;Dazhou;Dazhou,达州市
+CN;China;Dehui;Dehui,德惠市
+CN;China;Delingha;Delingha,德令哈市
+CN;China;Dengfeng;Dengfeng,登封市
+CN;China;Dengta;Dengta,灯塔市
+CN;China;Dengzhou;Dengzhou,邓州市
+CN;China;Dexing;Dexing,德兴市
+CN;China;Deyang;Deyang,德阳市
+CN;China;Dezhou;Dezhou,德州市
+CN;China;Diaobingshan;Diaobingshan,调兵山市
+CN;China;Dingxi;Dingxi,定西市
+CN;China;Dingzhou;Dingzhou,定州市
+CN;China;Dongfang;Dongfang,东方市
+CN;China;Donggang;Donggang,东港市
+CN;China;Dongguan;Dongguan,东莞市
+CN;China;Dongning;Dongning,东宁市
+CN;China;Dongtai;Dongtai,东台市
+CN;China;Dongxing;Dongxing,东兴市
+CN;China;Dongyang;Dongyang,东阳市
+CN;China;Dongying;Dongying,东营市
+CN;China;Dujiangyan;Dujiangyan,都江堰市
+CN;China;Dunhua;Dunhua,敦化市
+CN;China;Dunhuang;Dunhuang,敦煌市
+CN;China;Duyun;Duyun,都匀市
+CN;China;Emeishan;Emeishan,峨眉山市
+CN;China;Enping;Enping,恩平市
+CN;China;Enshi;Enshi,恩施市
+CN;China;Erenhot;Erenhot,二连浩特市
+CN;China;Ergun;Ergun,额尔古纳市
+CN;China;Ezhou;Ezhou,鄂州市
+CN;China;Fangchenggang;Fangchenggang,防城港市
+CN;China;Feicheng;Feicheng,肥城市
+CN;China;Fengcheng;Fengcheng,丰城市
+CN;China;Fengcheng;Fengcheng,凤城市
+CN;China;Fengzhen;Fengzhen,丰镇市
+CN;China;Fenyang;Fenyang,汾阳市
+CN;China;Foshan;Foshan,佛山市
+CN;China;Fu'an;Fu'an,福安市
+CN;China;Fuding;Fuding,福鼎市
+CN;China;Fujin;Fujin,富锦市
+CN;China;Fukang;Fukang,阜康市
+CN;China;Fuqing;Fuqing,福清市
+CN;China;Fuquan;Fuquan,福泉市
+CN;China;Fushun;Fushun,抚顺市
+CN;China;Fuxin;Fuxin,阜新市
+CN;China;Fuyang;Fuyang,阜阳市
+CN;China;Fuyu;Fuyu,扶余市
+CN;China;Fuyuan;Fuyuan,抚远市
+CN;China;Fuzhou;Fuzhou,福州市
+CN;China;Fuzhou;Fuzhou,抚州市
+CN;China;Gaizhou;Gaizhou,盖州市
+CN;China;Ganzhou;Ganzhou,赣州市
+CN;China;Gao'an;Gao'an,高安市
+CN;China;Gaobeidian;Gaobeidian,高碑店市
+CN;China;Gaomi;Gaomi,高密市
+CN;China;Gaoping;Gaoping,高平市
+CN;China;Gaoyou;Gaoyou,高邮市
+CN;China;Gaozhou;Gaozhou,高州市
+CN;China;Gejiu;Gejiu,个旧市
+CN;China;Genhe;Genhe,根河市
+CN;China;Golmud;Golmud,格尔木市
+CN;China;Gongqingcheng;Gongqingcheng,共青城市
+CN;China;Gongyi;Gongyi,巩义市
+CN;China;Gongzhuling;Gongzhuling,公主岭市
+CN;China;Guang'an;Guang'an,广安市
+CN;China;Guangde;Guangde,广德市
+CN;China;Guanghan;Guanghan,广汉市
+CN;China;Guangshui;Guangshui,广水市
+CN;China;Guangyuan;Guangyuan,广元市
+CN;China;Guangzhou;Guangzhou,广州市
+CN;China;Guigang;Guigang,贵港市
+CN;China;Guilin;Guilin,桂林市
+CN;China;Guiping;Guiping,桂平市
+CN;China;Guixi;Guixi,贵溪市
+CN;China;Guiyang;Guiyang,贵阳市
+CN;China;Gujiao;Gujiao,古交市
+CN;China;Guyuan;Guyuan,固原市
+CN;China;Hai'an;Hai'an,海安市
+CN;China;Haicheng;Haicheng,海城市
+CN;China;Haidong;Haidong,海东市
+CN;China;Haikou;Haikou,海口市
+CN;China;Hailin;Hailin,海林市
+CN;China;Hailun;Hailun,海伦市
+CN;China;Haining;Haining,海宁市
+CN;China;Haiyang;Haiyang,海阳市
+CN;China;Hami;Hami,哈密市
+CN;China;Hancheng;Hancheng,韩城市
+CN;China;Hanchuan;Hanchuan,汉川市
+CN;China;Handan;Handan,邯郸市
+CN;China;Hangzhou;Hangzhou,杭州市
+CN;China;Hanzhong;Hanzhong,汉中市
+CN;China;Harbin;Harbin,哈尔滨市
+CN;China;Hebi;Hebi,鹤壁市
+CN;China;Hechi;Hechi,河池市
+CN;China;Hefei;Hefei,合肥市
+CN;China;Hegang;Hegang,鹤岗市
+CN;China;Heihe;Heihe,黑河市
+CN;China;Hejian;Hejian,河间市
+CN;China;Hejin;Hejin,河津市
+CN;China;Helong;Helong,和龙市
+CN;China;Hengshui;Hengshui,衡水市
+CN;China;Hengyang;Hengyang,衡阳市
+CN;China;Heshan;Heshan,鹤山市
+CN;China;Heshan;Heshan,合山市
+CN;China;Heyuan;Heyuan,河源市
+CN;China;Heze;Heze,菏泽市
+CN;China;Hezhou;Hezhou,贺州市
+CN;China;Hezuo;Hezuo,合作市
+CN;China;Hohhot;Hohhot,呼和浩特市
+CN;China;Holingol;Holingol,霍林郭勒市
+CN;China;Hong Kong;Hong Kong,香港特别行政區
+CN;China;Honghu;Honghu,洪湖市
+CN;China;Hongjiang;Hongjiang,洪江市
+CN;China;Hotan;Hotan,和田市
+CN;China;Houma;Houma,侯马市
+CN;China;Huadian;Huadian,桦甸市
+CN;China;Huai'an;Huai'an,淮安市
+CN;China;Huaibei;Huaibei,淮北市
+CN;China;Huaihua;Huaihua,怀化市
+CN;China;Huainan;Huainan,淮南市
+CN;China;Huairen;Huairen,怀仁市
+CN;China;Huanggang;Huanggang,黄冈市
+CN;China;Huanghua;Huanghua,黄骅市
+CN;China;Huangshan;Huangshan,黄山市
+CN;China;Huangshi;Huangshi,黄石市
+CN;China;Huating;Huating,华亭市
+CN;China;Huayin;Huayin,华阴市
+CN;China;Huaying;Huaying,华蓥市
+CN;China;Huazhou;Huazhou,化州市
+CN;China;Huixian;Huixian,辉县市
+CN;China;Huizhou;Huizhou,惠州市
+CN;China;Hulin;Hulin,虎林市
+CN;China;Huludao;Huludao,葫芦岛市
+CN;China;Hulunbuir;Hulunbuir,呼伦贝尔市
+CN;China;Hunchun;Hunchun,珲春市
+CN;China;Huozhou;Huozhou,霍州市
+CN;China;Huyanghe;Huyanghe,胡杨河市
+CN;China;Huzhou;Huzhou,湖州市
+CN;China;Ji'an;Ji'an,吉安市
+CN;China;Ji'an;Ji'an,集安市
+CN;China;Jiamusi;Jiamusi,佳木斯市
+CN;China;Jian'ou;Jian'ou,建瓯市
+CN;China;Jiande;Jiande,建德市
+CN;China;Jiangmen;Jiangmen,江门市
+CN;China;Jiangshan;Jiangshan,江山市
+CN;China;Jiangyin;Jiangyin,江阴市
+CN;China;Jiangyou;Jiangyou,江油市
+CN;China;Jianli;Jianli,监利市
+CN;China;Jianyang;Jianyang,简阳市
+CN;China;Jiaohe;Jiaohe,蛟河市
+CN;China;Jiaozhou;Jiaozhou,胶州市
+CN;China;Jiaozuo;Jiaozuo,焦作市
+CN;China;Jiaxing;Jiaxing,嘉兴市
+CN;China;Jiayuguan;Jiayuguan,嘉峪关市
+CN;China;Jieshou;Jieshou,界首市
+CN;China;Jiexiu;Jiexiu,介休市
+CN;China;Jieyang;Jieyang,揭阳市
+CN;China;Jilin;Jilin,吉林市
+CN;China;Jinan;Jinan,济南市
+CN;China;Jinchang;Jinchang,金昌市
+CN;China;Jincheng;Jincheng,晋城市
+CN;China;Jingdezhen;Jingdezhen,景德镇市
+CN;China;Jinggangshan;Jinggangshan,井冈山市
+CN;China;Jinghong;Jinghong,景洪市
+CN;China;Jingjiang;Jingjiang,靖江市
+CN;China;Jingmen;Jingmen,荆门市
+CN;China;Jingshan;Jingshan,京山市
+CN;China;Jingxi;Jingxi,靖西市
+CN;China;Jingzhou;Jingzhou,荆州市
+CN;China;Jinhua;Jinhua,金华市
+CN;China;Jining;Jining,济宁市
+CN;China;Jinjiang;Jinjiang,晋江市
+CN;China;Jinshi;Jinshi,津市市
+CN;China;Jinzhong;Jinzhong,晋中市
+CN;China;Jinzhou;Jinzhou,晋州市
+CN;China;Jinzhou;Jinzhou,锦州市
+CN;China;Jishou;Jishou,吉首市
+CN;China;Jiujiang;Jiujiang,九江市
+CN;China;Jiuquan;Jiuquan,酒泉市
+CN;China;Jixi;Jixi,鸡西市
+CN;China;Jiyuan;Jiyuan,济源市
+CN;China;Jurong;Jurong,句容市
+CN;China;Kaifeng;Kaifeng,开封市
+CN;China;Kaili;Kaili,凯里市
+CN;China;Kaiping;Kaiping,开平市
+CN;China;Kaiyuan;Kaiyuan,开原市
+CN;China;Kaiyuan;Kaiyuan,开远市
+CN;China;Kangding;Kangding,康定市
+CN;China;Karamay;Karamay,克拉玛依市
+CN;China;Kashgar;Kashgar,喀什市
+CN;China;Khorgas;Khorgas,霍尔果斯市
+CN;China;Kokdala;Kokdala,可克达拉市
+CN;China;Korla;Korla,库尔勒市
+CN;China;Kunming;Kunming,昆明市
+CN;China;Kunshan;Kunshan,昆山市
+CN;China;Kunyu;Kunyu,昆玉市
+CN;China;Kuqa;Kuqa,库车市
+CN;China;Kuytun;Kuytun,奎屯市
+CN;China;Laibin;Laibin,来宾市
+CN;China;Laixi;Laixi,莱西市
+CN;China;Laiyang;Laiyang,莱阳市
+CN;China;Laizhou;Laizhou,莱州市
+CN;China;Langfang;Langfang,廊坊市
+CN;China;Langzhong;Langzhong,阆中市
+CN;China;Lanxi;Lanxi,兰溪市
+CN;China;Lanzhou;Lanzhou,兰州市
+CN;China;Laohekou;Laohekou,老河口市
+CN;China;Lechang;Lechang,乐昌市
+CN;China;Leiyang;Leiyang,耒阳市
+CN;China;Leizhou;Leizhou,雷州市
+CN;China;Leling;Leling,乐陵市
+CN;China;Lengshuijiang;Lengshuijiang,冷水江市
+CN;China;Leping;Leping,乐平市
+CN;China;Leshan;Leshan,乐山市
+CN;China;Lhasa;Lhasa,拉萨市
+CN;China;Lianjiang;Lianjiang,廉江市
+CN;China;Lianyuan;Lianyuan,涟源市
+CN;China;Lianyungang;Lianyungang,连云港市
+CN;China;Lianzhou;Lianzhou,连州市
+CN;China;Liaocheng;Liaocheng,聊城市
+CN;China;Liaoyang;Liaoyang,辽阳市
+CN;China;Liaoyuan;Liaoyuan,辽源市
+CN;China;Lichuan;Lichuan,利川市
+CN;China;Lijiang;Lijiang,丽江市
+CN;China;Liling;Liling,醴陵市
+CN;China;Lincang;Lincang,临沧市
+CN;China;Linfen;Linfen,临汾市
+CN;China;Lingbao;Lingbao,灵宝市
+CN;China;Linghai;Linghai,凌海市
+CN;China;Lingwu;Lingwu,灵武市
+CN;China;Lingyuan;Lingyuan,凌源市
+CN;China;Linhai;Linhai,临海市
+CN;China;Linjiang;Linjiang,临江市
+CN;China;Linqing;Linqing,临清市
+CN;China;Linxia;Linxia,临夏市
+CN;China;Linxiang;Linxiang,临湘市
+CN;China;Linyi;Linyi,临沂市
+CN;China;Linzhou;Linzhou,林州市
+CN;China;Lipu;Lipu,荔浦市
+CN;China;Lishui;Lishui,丽水市
+CN;China;Liupanshui;Liupanshui,六盘水市
+CN;China;Liuyang;Liuyang,浏阳市
+CN;China;Liuzhou;Liuzhou,柳州市
+CN;China;Liyang;Liyang,溧阳市
+CN;China;Longchang;Longchang,隆昌市
+CN;China;Longgang;Longgang,龙港市
+CN;China;Longhai;Longhai,龙海市
+CN;China;Longjing;Longjing,龙井市
+CN;China;Longkou;Longkou,龙口市
+CN;China;Longnan;Longnan,陇南市
+CN;China;Longnan;Longnan,龙南市
+CN;China;Longquan;Longquan,龙泉市
+CN;China;Longyan;Longyan,龙岩市
+CN;China;Loudi;Loudi,娄底市
+CN;China;Lu'an;Lu'an,六安市
+CN;China;Luanzhou;Luanzhou,滦州市
+CN;China;Lufeng;Lufeng,陆丰市
+CN;China;Lüliang;Lüliang,吕梁市
+CN;China;Luoding;Luoding,罗定市
+CN;China;Luohe;Luohe,漯河市
+CN;China;Luoyang;Luoyang,洛阳市
+CN;China;Lushan;Lushan,庐山市
+CN;China;Lushui;Lushui,泸水市
+CN;China;Luzhou;Luzhou,泸州市
+CN;China;Ma'anshan;Ma'anshan,马鞍山市
+CN;China;Macau;Macau,澳門特别行政區
+CN;China;Macheng;Macheng,麻城市
+CN;China;Mangnai;Mangnai,茫崖市
+CN;China;Mangshi;Mangshi,芒市
+CN;China;Manzhouli;Manzhouli,满洲里市
+CN;China;Maoming;Maoming,茂名市
+CN;China;Meihekou;Meihekou,梅河口市
+CN;China;Meishan;Meishan,眉山市
+CN;China;Meizhou;Meizhou,梅州市
+CN;China;Mengzhou;Mengzhou,孟州市
+CN;China;Mengzi;Mengzi,蒙自市
+CN;China;Mianyang;Mianyang,绵阳市
+CN;China;Mianzhu;Mianzhu,绵竹市
+CN;China;Mile;Mile,弥勒市
+CN;China;Miluo;Miluo,汨罗市
+CN;China;Mingguang;Mingguang,明光市
+CN;China;Mishan;Mishan,密山市
+CN;China;Mohe;Mohe,漠河市
+CN;China;Mudanjiang;Mudanjiang,牡丹江市
+CN;China;Muling;Muling,穆棱市
+CN;China;Nagqu;Nagqu,那曲市
+CN;China;Nan'an;Nan'an,南安市
+CN;China;Nanchang;Nanchang,南昌市
+CN;China;Nanchong;Nanchong,南充市
+CN;China;Nangong;Nangong,南宫市
+CN;China;Nanjing;Nanjing,南京市
+CN;China;Nanning;Nanning,南宁市
+CN;China;Nanping;Nanping,南平市
+CN;China;Nantong;Nantong,南通市
+CN;China;Nanxiong;Nanxiong,南雄市
+CN;China;Nanyang;Nanyang,南阳市
+CN;China;Nehe;Nehe,讷河市
+CN;China;Neijiang;Neijiang,内江市
+CN;China;Nenjiang;Nenjiang,嫩江市
+CN;China;Ning'an;Ning'an,宁安市
+CN;China;Ningbo;Ningbo,宁波市
+CN;China;Ningde;Ningde,宁德市
+CN;China;Ningguo;Ningguo,宁国市
+CN;China;Ningxiang;Ningxiang,宁乡市
+CN;China;Nyingchi;Nyingchi,林芝市
+CN;China;Ordos;Ordos,鄂尔多斯市
+CN;China;Panjin;Panjin,盘锦市
+CN;China;Panshi;Panshi,磐石市
+CN;China;Panzhihua;Panzhihua,攀枝花市
+CN;China;Panzhou;Panzhou,盘州市
+CN;China;Pengzhou;Pengzhou,彭州市
+CN;China;Pingdingshan;Pingdingshan,平顶山市
+CN;China;Pingdu;Pingdu,平度市
+CN;China;Pingguo;Pingguo,平果市
+CN;China;Pinghu;Pinghu,平湖市
+CN;China;Pingliang;Pingliang,平凉市
+CN;China;Pingquan;Pingquan,平泉市
+CN;China;Pingxiang;Pingxiang,凭祥市
+CN;China;Pingxiang;Pingxiang,萍乡市
+CN;China;Pizhou;Pizhou,邳州市
+CN;China;Pu'er;Pu'er,普洱市
+CN;China;Puning;Puning,普宁市
+CN;China;Putian;Putian,莆田市
+CN;China;Puyang;Puyang,濮阳市
+CN;China;Qamdo;Qamdo,昌都市
+CN;China;Qian'an;Qian'an,迁安市
+CN;China;Qianjiang;Qianjiang,潜江市
+CN;China;Qianshan;Qianshan,潜山市
+CN;China;Qidong;Qidong,启东市
+CN;China;Qingdao;Qingdao,青岛市
+CN;China;Qingtongxia;Qingtongxia,青铜峡市
+CN;China;Qingyang;Qingyang,庆阳市
+CN;China;Qingyuan;Qingyuan,清远市
+CN;China;Qingzhen;Qingzhen,清镇市
+CN;China;Qingzhou;Qingzhou,青州市
+CN;China;Qinhuangdao;Qinhuangdao,秦皇岛市
+CN;China;Qinyang;Qinyang,沁阳市
+CN;China;Qinzhou;Qinzhou,钦州市
+CN;China;Qionghai;Qionghai,琼海市
+CN;China;Qionglai;Qionglai,邛崃市
+CN;China;Qiqihar;Qiqihar,齐齐哈尔市
+CN;China;Qitaihe;Qitaihe,七台河市
+CN;China;Qixia;Qixia,栖霞市
+CN;China;Quanzhou;Quanzhou,泉州市
+CN;China;Qufu;Qufu,曲阜市
+CN;China;Qujing;Qujing,曲靖市
+CN;China;Quzhou;Quzhou,衢州市
+CN;China;Renhuai;Renhuai,仁怀市
+CN;China;Renqiu;Renqiu,任丘市
+CN;China;Rizhao;Rizhao,日照市
+CN;China;Rongcheng;Rongcheng,荣成市
+CN;China;Rugao;Rugao,如皋市
+CN;China;Ruian;Ruian,瑞安市
+CN;China;Ruichang;Ruichang,瑞昌市
+CN;China;Ruijin;Ruijin,瑞金市
+CN;China;Ruili;Ruili,瑞丽市
+CN;China;Rushan;Rushan,乳山市
+CN;China;Ruzhou;Ruzhou,汝州市
+CN;China;Sanhe;Sanhe,三河市
+CN;China;Sanmenxia;Sanmenxia,三门峡市
+CN;China;Sanming;Sanming,三明市
+CN;China;Sansha;Sansha,三沙市
+CN;China;Sanya;Sanya,三亚市
+CN;China;Shahe;Shahe,沙河市
+CN;China;Shanghai;Shanghai,上海市
+CN;China;Shangluo;Shangluo,商洛市
+CN;China;Shangqiu;Shangqiu,商丘市
+CN;China;Shangrao;Shangrao,上饶市
+CN;China;Shangri-La;Shangri-La,香格里拉市
+CN;China;Shangzhi;Shangzhi,尚志市
+CN;China;Shannan;Shannan,山南市
+CN;China;Shantou;Shantou,汕头市
+CN;China;Shanwei;Shanwei,汕尾市
+CN;China;Shaodong;Shaodong,邵东市
+CN;China;Shaoguan;Shaoguan,韶关市
+CN;China;Shaoshan;Shaoshan,韶山市
+CN;China;Shaowu;Shaowu,邵武市
+CN;China;Shaoxing;Shaoxing,绍兴市
+CN;China;Shaoyang;Shaoyang,邵阳市
+CN;China;Shehong;Shehong,射洪市
+CN;China;Shengzhou;Shengzhou,嵊州市
+CN;China;Shenmu;Shenmu,神木市
+CN;China;Shenyang;Shenyang,沈阳市
+CN;China;Shenzhen;Shenzhen,深圳市
+CN;China;Shenzhou;Shenzhou,深州市
+CN;China;Shifang;Shifang,什邡市
+CN;China;Shihezi;Shihezi,石河子市
+CN;China;Shijiazhuang;Shijiazhuang,石家庄市
+CN;China;Shishi;Shishi,石狮市
+CN;China;Shishou;Shishou,石首市
+CN;China;Shiyan;Shiyan,十堰市
+CN;China;Shizuishan;Shizuishan,石嘴山市
+CN;China;Shouguang;Shouguang,寿光市
+CN;China;Shuanghe;Shuanghe,双河市
+CN;China;Shuangliao;Shuangliao,双辽市
+CN;China;Shuangyashan;Shuangyashan,双鸭山市
+CN;China;Shuifu;Shuifu,水富市
+CN;China;Shulan;Shulan,舒兰市
+CN;China;Shuozhou;Shuozhou,朔州市
+CN;China;Sihui;Sihui,四会市
+CN;China;Siping;Siping,四平市
+CN;China;Songyuan;Songyuan,松原市
+CN;China;Songzi;Songzi,松滋市
+CN;China;Suifenhe;Suifenhe,绥芬河市
+CN;China;Suihua;Suihua,绥化市
+CN;China;Suining;Suining,遂宁市
+CN;China;Suizhou;Suizhou,随州市
+CN;China;Suqian;Suqian,宿迁市
+CN;China;Suzhou;Suzhou,宿州市
+CN;China;Suzhou;Suzhou,苏州市
+CN;China;Tacheng;Tacheng,塔城市
+CN;China;Tai'an;Tai'an,泰安市
+CN;China;Taicang;Taicang,太仓市
+CN;China;Taishan;Taishan,台山市
+CN;China;Taixing;Taixing,泰兴市
+CN;China;Taiyuan;Taiyuan,太原市
+CN;China;Taizhou;Taizhou,泰州市
+CN;China;Taizhou;Taizhou,台州市
+CN;China;Tangshan;Tangshan,唐山市
+CN;China;Taonan;Taonan,洮南市
+CN;China;Tengchong;Tengchong,腾冲市
+CN;China;Tengzhou;Tengzhou,滕州市
+CN;China;Tianchang;Tianchang,天长市
+CN;China;Tianjin;Tianjin,天津市
+CN;China;Tianmen;Tianmen,天门市
+CN;China;Tianshui;Tianshui,天水市
+CN;China;Tieli;Tieli,铁力市
+CN;China;Tieling;Tieling,铁岭市
+CN;China;Tiemenguan;Tiemenguan,铁门关市
+CN;China;Tongcheng;Tongcheng,桐城市
+CN;China;Tongchuan;Tongchuan,铜川市
+CN;China;Tonghua;Tonghua,通化市
+CN;China;Tongjiang;Tongjiang,同江市
+CN;China;Tongliao;Tongliao,通辽市
+CN;China;Tongling;Tongling,铜陵市
+CN;China;Tongren;Tongren,铜仁市
+CN;China;Tongren;Tongren,同仁市
+CN;China;Tongxiang;Tongxiang,桐乡市
+CN;China;Tumen;Tumen,图们市
+CN;China;Tumxuk;Tumxuk,图木舒克市
+CN;China;Turpan;Turpan,吐鲁番市
+CN;China;Ulanhot;Ulanhot,乌兰浩特市
+CN;China;Ulanqab;Ulanqab,乌兰察布市
+CN;China;Ürümqi;Ürümqi,乌鲁木齐市
+CN;China;Wafangdian;Wafangdian,瓦房店市
+CN;China;Wanning;Wanning,万宁市
+CN;China;Wanyuan;Wanyuan,万源市
+CN;China;Weifang;Weifang,潍坊市
+CN;China;Weihai;Weihai,威海市
+CN;China;Weihui;Weihui,卫辉市
+CN;China;Weinan;Weinan,渭南市
+CN;China;Wenchang;Wenchang,文昌市
+CN;China;Wenling;Wenling,温岭市
+CN;China;Wenshan;Wenshan,文山市
+CN;China;Wenzhou;Wenzhou,温州市
+CN;China;Wu'an;Wu'an,武安市
+CN;China;Wuchang;Wuchang,五常市
+CN;China;Wuchuan;Wuchuan,吴川市
+CN;China;Wudalianchi;Wudalianchi,五大连池市
+CN;China;Wugang;Wugang,舞钢市
+CN;China;Wugang;Wugang,武冈市
+CN;China;Wuhai;Wuhai,乌海市
+CN;China;Wuhan;Wuhan,武汉市
+CN;China;Wuhu;Wuhu,芜湖市
+CN;China;Wujiaqu;Wujiaqu,五家渠市
+CN;China;Wusu;Wusu,乌苏市
+CN;China;Wuwei;Wuwei,无为市
+CN;China;Wuwei;Wuwei,武威市
+CN;China;Wuxi;Wuxi,无锡市
+CN;China;Wuxue;Wuxue,武穴市
+CN;China;Wuyishan;Wuyishan,武夷山市
+CN;China;Wuzhishan;Wuzhishan,五指山市
+CN;China;Wuzhong;Wuzhong,吴忠市
+CN;China;Wuzhou;Wuzhou,梧州市
+CN;China;Xi'an;Xi'an,西安市
+CN;China;Xiamen;Xiamen,厦门市
+CN;China;Xiangcheng;Xiangcheng,项城市
+CN;China;Xiangtan;Xiangtan,湘潭市
+CN;China;Xiangxiang;Xiangxiang,湘乡市
+CN;China;Xiangyang;Xiangyang,襄阳市
+CN;China;Xianning;Xianning,咸宁市
+CN;China;Xiantao;Xiantao,仙桃市
+CN;China;Xianyang;Xianyang,咸阳市
+CN;China;Xiaogan;Xiaogan,孝感市
+CN;China;Xiaoyi;Xiaoyi,孝义市
+CN;China;Xichang;Xichang,西昌市
+CN;China;Xigazê;Xigazê,日喀则市
+CN;China;Xilinhot;Xilinhot,锡林浩特市
+CN;China;Xingcheng;Xingcheng,兴城市
+CN;China;Xinghua;Xinghua,兴化市
+CN;China;Xingning;Xingning,兴宁市
+CN;China;Xingping;Xingping,兴平市
+CN;China;Xingren;Xingren,兴仁市
+CN;China;Xingtai;Xingtai,邢台市
+CN;China;Xingyang;Xingyang,荥阳市
+CN;China;Xingyi;Xingyi,兴义市
+CN;China;Xining;Xining,西宁市
+CN;China;Xinji;Xinji,辛集市
+CN;China;Xinle;Xinle,新乐市
+CN;China;Xinmi;Xinmi,新密市
+CN;China;Xinmin;Xinmin,新民市
+CN;China;Xintai;Xintai,新泰市
+CN;China;Xinxiang;Xinxiang,新乡市
+CN;China;Xinyang;Xinyang,信阳市
+CN;China;Xinyi;Xinyi,信宜市
+CN;China;Xinyi;Xinyi,新沂市
+CN;China;Xinyu;Xinyu,新余市
+CN;China;Xinzheng;Xinzheng,新郑市
+CN;China;Xinzhou;Xinzhou,忻州市
+CN;China;Xuancheng;Xuancheng,宣城市
+CN;China;Xuanwei;Xuanwei,宣威市
+CN;China;Xuchang;Xuchang,许昌市
+CN;China;Xuzhou;Xuzhou,徐州市
+CN;China;Ya'an;Ya'an,雅安市
+CN;China;Yakeshi;Yakeshi,牙克石市
+CN;China;Yan'an;Yan'an,延安市
+CN;China;Yancheng;Yancheng,盐城市
+CN;China;Yangchun;Yangchun,阳春市
+CN;China;Yangjiang;Yangjiang,阳江市
+CN;China;Yangquan;Yangquan,阳泉市
+CN;China;Yangzhong;Yangzhong,扬中市
+CN;China;Yangzhou;Yangzhou,扬州市
+CN;China;Yanji;Yanji,延吉市
+CN;China;Yanshi;Yanshi,偃师市
+CN;China;Yantai;Yantai,烟台市
+CN;China;Yibin;Yibin,宜宾市
+CN;China;Yichang;Yichang,宜昌市
+CN;China;Yicheng;Yicheng,宜城市
+CN;China;Yichun;Yichun,伊春市
+CN;China;Yichun;Yichun,宜春市
+CN;China;Yidu;Yidu,宜都市
+CN;China;Yima;Yima,义马市
+CN;China;Yinchuan;Yinchuan,银川市
+CN;China;Yingcheng;Yingcheng,应城市
+CN;China;Yingde;Yingde,英德市
+CN;China;Yingkou;Yingkou,营口市
+CN;China;Yingtan;Yingtan,鹰潭市
+CN;China;Yining;Yining,伊宁市
+CN;China;Yiwu;Yiwu,义乌市
+CN;China;Yixing;Yixing,宜兴市
+CN;China;Yiyang;Yiyang,益阳市
+CN;China;Yizheng;Yizheng,仪征市
+CN;China;Yong'an;Yong'an,永安市
+CN;China;Yongcheng;Yongcheng,永城市
+CN;China;Yongji;Yongji,永济市
+CN;China;Yongkang;Yongkang,永康市
+CN;China;Yongzhou;Yongzhou,永州市
+CN;China;Yuanjiang;Yuanjiang,沅江市
+CN;China;Yuanping;Yuanping,原平市
+CN;China;Yucheng;Yucheng,禹城市
+CN;China;Yueqing;Yueqing,乐清市
+CN;China;Yueyang;Yueyang,岳阳市
+CN;China;Yuhuan;Yuhuan,玉环市
+CN;China;Yulin;Yulin,玉林市
+CN;China;Yulin;Yulin,榆林市
+CN;China;Yumen;Yumen,玉门市
+CN;China;Yuncheng;Yuncheng,运城市
+CN;China;Yunfu;Yunfu,云浮市
+CN;China;Yushu;Yushu,榆树市
+CN;China;Yushu;Yushu,玉树市
+CN;China;Yuxi;Yuxi,玉溪市
+CN;China;Yuyao;Yuyao,余姚市
+CN;China;Yuzhou;Yuzhou,禹州市
+CN;China;Zaoyang;Zaoyang,枣阳市
+CN;China;Zaozhuang;Zaozhuang,枣庄市
+CN;China;Zhalantun;Zhalantun,扎兰屯市
+CN;China;Zhangjiagang;Zhangjiagang,张家港市
+CN;China;Zhangjiajie;Zhangjiajie,张家界市
+CN;China;Zhangjiakou;Zhangjiakou,张家口市
+CN;China;Zhangping;Zhangping,漳平市
+CN;China;Zhangshu;Zhangshu,樟树市
+CN;China;Zhangye;Zhangye,张掖市
+CN;China;Zhangzhou;Zhangzhou,漳州市
+CN;China;Zhanjiang;Zhanjiang,湛江市
+CN;China;Zhaodong;Zhaodong,肇东市
+CN;China;Zhaoqing;Zhaoqing,肇庆市
+CN;China;Zhaotong;Zhaotong,昭通市
+CN;China;Zhaoyuan;Zhaoyuan,招远市
+CN;China;Zhengzhou;Zhengzhou,郑州市
+CN;China;Zhenjiang;Zhenjiang,镇江市
+CN;China;Zhijiang;Zhijiang,枝江市
+CN;China;Zhongshan;Zhongshan,中山市
+CN;China;Zhongwei;Zhongwei,中卫市
+CN;China;Zhongxiang;Zhongxiang,钟祥市
+CN;China;Zhoukou;Zhoukou,周口市
+CN;China;Zhoushan;Zhoushan,舟山市
+CN;China;Zhuanghe;Zhuanghe,庄河市
+CN;China;Zhucheng;Zhucheng,诸城市
+CN;China;Zhuhai;Zhuhai,珠海市
+CN;China;Zhuji;Zhuji,诸暨市
+CN;China;Zhumadian;Zhumadian,驻马店市
+CN;China;Zhuozhou;Zhuozhou,涿州市
+CN;China;Zhuzhou;Zhuzhou,株洲市
+CN;China;Zibo;Zibo,淄博市
+CN;China;Zichang;Zichang,子长市
+CN;China;Zigong;Zigong,自贡市
+CN;China;Zixing;Zixing,资兴市
+CN;China;Ziyang;Ziyang,资阳市
+CN;China;Zoucheng;Zoucheng,邹城市
+CN;China;Zouping;Zouping,邹平市
+CN;China;Zunhua;Zunhua,遵化市
+CN;China;Zunyi;Zunyi,遵义市
+CO;Colombia;Barranquilla;Barranquilla
+CO;Colombia;Bogotá;Bogot[á]
+CO;Colombia;Cali;(Santiago de )?Cali
+CO;Colombia;Medellín;Medell[i]n
+US-CO;Colorado;Aspen;Aspen
+US-CO;Colorado;Austin;Austin.{1,5}(Colorado|CO)
+US-CO;Colorado;Denver;Denver
+US-CO;Colorado;Portland;Portland.{1,5}(Colorado|CO)
+US-CT;Connecticut;Hartford;Hartford
+US-CT;Connecticut;Norwalk;Norwalk.{1,5}(Connecticut|CT)
+US-CT;Connecticut;Portland;Portland.{1,5}(Connecticut|CT)
+HR;Croatia;Zagreb;Zagreb
+CU;Cuba;Havana;Havana, La Habana
+CY;Cyprus;Nicosia;Nicosia, Λευκωσία, Lefkoşa
+CZ;Czech Republic;Brno;Brno
+CZ;Czech Republic;Karlovy Vary;Karlovy Vary
+CZ;Czech Republic;Liberec;Liberec
+CZ;Czech Republic;Olomouc;Olomouc[ei]?
+CZ;Czech Republic;Ostrava;Ostrav[aey]
+CZ;Czech Republic;Pilsen;Pi?l[sz]e[n]
+CZ;Czech Republic;Prague;Prague, Pra(ha|hy|ze), Prag
+DO;Dominican Republic;Punta Cana;
+DK;Denmark;Copenhagen;Copenhagen, København, Hafnia
+DK;Denmark;Nuuk;Nuuk, Godth[å]b
+EC;Ecuador;Guayaquil;Santiago de Guayaquil, Guayaquil
+EC;Ecuador;Quito;Quito
+EG;Egypt;Alexandria;Alexandria, الإسكندرية
+EG;Egypt;Cairo;Cairo, Kahire, K[a]hir, Al-Qāhiraha, القاهرة
+EG;Egypt;Giza;G[i]zah?, الجيزة
+EG;Egypt;Sharm El Sheikh;Sharm El Sheikh, شرم الشيخ
+SV;El Salvador;San Salvador;San Salv[a]dor, El Salv[a]dor
+GB-ENG;England;Birmingham;Birmingham
+GB-ENG;England;Bradford;Bradford
+GB-ENG;England;Brighton;Brighton
+GB-ENG;England;Bristol;Bristol
+GB-ENG;England;Cambridge;Cambridge
+GB-ENG;England;Canterbury;Canterbury
+GB-ENG;England;Chelmsford;Chelmsford
+GB-ENG;England;Coventry;Coventry
+GB-ENG;England;Dover;Dover
+GB-ENG;England;Gloucester;Gloucester
+GB-ENG;England;Isle of Portland;Isle of Portland
+GB-ENG;England;Leeds;Leeds
+GB-ENG;England;Leicester;Leicester
+GB-ENG;England;Liverpool;Liverpool
+GB-ENG;England;London;London
+GB-ENG;England;Luton;Luton
+GB-ENG;England;Manchester;Manchester
+GB-ENG;England;Newcastle;Newcastle.{1,5}(England|ENG|GB|upon Tyne)
+GB-ENG;England;Northampton;Northampton
+GB-ENG;England;Norwich;Norwich
+GB-ENG;England;Nottingham;Nottingham
+GB-ENG;England;Oxford;Oxford
+GB-ENG;England;Peterborough;Peterborough
+GB-ENG;England;Plymouth;Plymouth
+GB-ENG;England;Portsmouth;Portsmouth
+GB-ENG;England;Sheffield;Sheffield
+GB-ENG;England;Southampton;Southampton
+GB-ENG;England;Wolverhampton;Wolverhampton
+EE;Estonia;Tallinn;Tallinn
+ET;Ethiopia;Addis Ababa;Addis Ab[a]ba, Addis Abeba, Finfinne, አዲስ አበባ
+FI;Finland;Helsinki;Helsinki, Helsingfors, Helsingin
+US-FL;Florida;Jacksonville;Jacksonville
+US-FL;Florida;Miami;Miami
+US-FL;Florida;Orlando;Orlando
+US-FL;Florida;Palm Beach;Palm Beach
+US-FL;Florida;Tallahassee;Tallahassee
+US-FL;Florida;Tampa;Tampa
+FR;France;Bordeaux;Bordeaux
+FR;France;Calais;Calais, Calés, Kales
+FR;France;Cannes;Cannes, Canas
+FR;France;Le Havre;Le Havre
+FR;France;Le Mans;Le Mans
+FR;France;Lyon;Li?yon
+FR;France;Marne-La-Vallée;Marne-La-Vallée
+FR;France;Marseille;Marseille, Marselha
+FR;France;Montpellier;Montpellier
+FR;France;Nantes;Nantes,Na(un)?ntt?
+FR;France;Paris;Paris
+FR;France;Rennes;Rennes, Roazhon
+FR;France;Rouen;Rouen, Rodomo, Rotomagus
+FR;France;Saint Tropez;(St|Sai?nt?) Trou?p[e]z
+FR;France;Strasbourg;Strasbourg, Strossburi, Stra(ß|ss)burg
+FR;France;Toulouse;Toulouse, Tolosa
+FR;France;Vaucluse;Vauclus[ea]
+FR;France;Verdun;Verdun
+FR;France;Versailles;Versailles
+US-GA;Georgia;Atlanta;Atlanta
+GE;Georgia;Sukhumi;Sukhumi, Akwa, Sokhumi, Аҟәа, სოხუმი
+GE;Georgia;Tbilisi;Tbilisi, Tiflis, თბილისი
+GE;Georgia;Tskhinvali;Tskhinvali, ცხინვალი, Цхинвал(и)
+DE;Germany;Dortmund;Dortmund, D[ü][ö]rpm
+DE;Germany;Berlin;Berl[i]n
+DE;Germany;Cologne;Cologne, K[ö]ln, K[ö]lle
+DE;Germany;Dresden;Dresden, Drezno, Drážďany
+DE;Germany;Frankfurt;Frankfurt( am Main)?
+DE;Germany;Hamburg;Hambur[gk]
+DE;Germany;Hanover;Hann?over
+DE;Germany;Munich;Munich, M[ü]nchen, Mnichov, Minga
+DE;Germany;Stuttgart;Stuttgart, Schduagert
+GH;Ghana;Accra;Accra
+GR;Greece;Athens;Athens, Athína, Αθήνα
+GT;Guatemala;Guatemala City;Guatemala City, Ciudad de Guatemala, Guate
+US-HI;Hawaii;Honolulu;Honolulu
+VA;Holy See (Vatican City State);Vatican City;Holy See, Vatican City, Civitas Vaticana, Citt[à] del Vaticano, Vati[ck][a]n, Vatikanstadt
+HK;Hong Kong;Hong Kong;Hong Kong, 香港
+HU;Hungary;Algyő;Algy[ő]
+HU;Hungary;Budapest;Budapest
+HU;Hungary;Bükkszentlászló;B[ü]kkszentl[á]szl[ó]
+HU;Hungary;Debrecen;Debrecen
+HU;Hungary;Miskolc;Miskolc, Mischkolz, Miškovec, Mi[ș]col[ț]
+IS;Iceland;Akureyri;Akureyri, Akureyrarkaupstaður
+IS;Iceland;Keflavík;Keflav[í]k
+IS;Iceland;Kópavogur;Kópavogur, Kópavogsbær
+IS;Iceland;Reykjavík;Reykjav[í]k
+US-ID;Idaho;Boise;Boise
+US-IL;Illinois;Austin;Austin.{1,5}(Illinois|IL)
+US-IL;Illinois;Chicago;Chicago
+IN;India;Ahmedabad;Ahmedabad, Amdavad, Karnavati, अहमदआबाद
+IN;India;Bengaluru;Bengaluru, Bangalore
+IN;India;Bhopal;Bhopal
+IN;India;Chennai;Chennai, Madras
+IN;India;Delhi;Delh[i], Dill[i]
+IN;India;Hyderabad;Hyderabad
+IN;India;Jaipur;Jaipur
+IN;India;Kanpur;Kanpur, Cawnpore
+IN;India;Kochi;Kochi, Cochin
+IN;India;Kolkata;Kolkata, Calcutta
+IN;India;Lucknow;Lucknow
+IN;India;Mumbai;Mumbai, Bombay
+IN;India;Nagpur;Nagpur
+IN;India;New Delhi;New Delh[i]
+IN;India;Patna;Patna
+IN;India;Pune;Pune, Poona
+IN;India;Surat;Surat, Suryapur
+IN;India;Vadodara;Vadodara, Baroda
+IN;India;Vijayawada;Vijayawada, Bejjamwada, Bezawada, Rajendracholapuram, Vijayavatika
+IN;India;Visakhapatnam;Visakhapatnam, Vizag, Vizagapatam, Waltair
+US-IN;Indiana;Austin;Austin.{1,5}(Indiana|IN)
+US-IN;Indiana;Indianapolis;Indianapolis
+ID;Indonesia;Bandung;Bandung, Stad Bandoeng, Kota Bandung
+ID;Indonesia;Bekasi;(Kota )?Bekasi
+ID;Indonesia;Bogor;Bogor, Buitenzorg
+ID;Indonesia;Denpasar;Denpasar
+ID;Indonesia;Jakarta;Jakarta
+ID;Indonesia;Makassar;Ma[kc]assar
+ID;Indonesia;Malang;Malang
+ID;Indonesia;Medan;Medan
+ID;Indonesia;Palembang;Palembang
+ID;Indonesia;Semarang;S[ea]marang
+ID;Indonesia;Surabaya;Surabaya, Soeraba[ij]a
+US-IA;Iowa;Des Moines;Des Moines
+US-IA;Iowa;Norwalk;Norwalk.{1,5}(Iowa|IA)
+IR;Iran;Isfahan;[IE]sfahan, Esfah[ā]n, Ispahan, اصفهان
+IR;Iran;Karaj;Karaj, کرج
+IR;Iran;Mashhad;Mashhad, Mašhad
+IR;Iran;Shiraz;Shiraz, شیراز
+IR;Iran;Tabriz;Tabriz, T[ə]briz, تبریز
+IR;Iran;Tehran;Tehr[a]n, تهران
+IQ;Iraq;Baghdad;Baghdad, Bagd[a]d, بغداد
+IQ;Iraq;Basra;Basra, al-Baṣrah, البصرة
+IQ;Iraq;Mosul;M[ou]sul, الموصل
+IE;Ireland;Belfast;Belfast, Béal Feirste
+IE;Ireland;Dublin;Dublin, Baile Átha Cliath
+IL;Israel;Jerusalem;Jerusalem, Yerushalayim, ירושלים, القُدس
+IL;Israel;Nazareth;Nazareth, Natzrat, נָצְרַת‎, النَّاصِرَة
+IL;Israel;Tel Aviv;Tel Aviv, תל אביב-יפו, تل أَبيب-يافا
+IT;Italy;Florence;Florence, Firenze, Florencie
+IT;Italy;Genoa;Genov?a, Genua
+IT;Italy;Milan;Mil[aá]no?
+IT;Italy;Naples;Naples, Napoli, Napule
+IT;Italy;Rome;R[o]m[ea]
+IT;Italy;Turin;Turin, (Città di )?Torino
+IT;Italy;Palermo;(Città di )?Palerm[ou]
+IT;Italy;Venice;Venice, Vene[zs]ia
+CI;Ivory Coast;Abidjan;Abidjan
+JP;Japan;Fukuoka;Fukuoka, Fukuoka-shi, 福岡市
+JP;Japan;Hiroshima;Hiroshima, 広島市
+JP;Japan;Kawasaki;Kawasaki, Kawasaki-shi, 川崎市
+JP;Japan;Kobe;Kobe, Kōbe-shi, 神戸市
+JP;Japan;Kyoto;Ky[o]to, 京都市
+JP;Japan;Nagoya;Nagoya, 名古屋
+JP;Japan;Osaka;[Ō]saka(-shi)?, 大阪市
+JP;Japan;Saitama;Saitama, Saitama-shi, さいたま市
+JP;Japan;Sapporo;Sapporo, 札幌市
+JP;Japan;Tokyo;Tokyo( Metropolis)?, 東京都
+JP;Japan;Yokohama;Yokohama, 横浜市
+JO;Jordan;Amman;Amman, عمّان
+US-KS;Kansas;Topeka;Topeka
+KZ;Kazakhstan;Almaty;Almaty, Alma Ata Алматы, Almatı
+KZ;Kazakhstan;Astana;Astana
+US-KY;Kentucky;Austin;Austin.{1,5}(Kentucky|KY)
+US-KY;Kentucky;Lexington;Lexington(.{1,5}(Kentucky|KY))?
+US-KY;Kentucky;Louisville;Louisville(.{1,5}(Kentucky|KY))?
+KE;Kenya;Nairobi;Nairobi
+XK;Kosovo;Pristina;Pristina, Prishtina, Prishtinë, Приштина, Priština, Prishtina
+LV;Latvia;Riga;R[i]ga
+LB;Lebanon;Beirut;Beir[u]t, Bayr[ū]t, Beyrouth
+LY;Libya;Tripoli;Tripoli, Ṭar[ā]bulus, طرابلس
+LI;Liechtenstein;Vaduz;Vaduz
+LT;Lithuania;Vilnius;Vilnius
+US-LA;Louisiana;Baton Rouge;B[a]ton Rouge
+US-LA;Louisiana;New Orleans;New Orleans, La Nouvelle Orl[é]ans
+LU;Luxembourg;Luxembourg;Luxembourg, Lëtzebuerg, Luxemburg
+MK;Macedonia;Skopje;Skopje, Скопје
+US-ME;Maine;Portland;Portland.{1,5}(Maine|ME)
+MY;Malaysia;Kota Kinabalu;Kota Kinabalu, Jesselton, کوتا کينابالو, 亚庇, 亞庇
+MY;Malaysia;Kuala Lumpur;Kuala Lumpur
+MT;Malta;Valletta;Valletta
+US-MD;Maryland;Annapolis;Annapolis
+US-MD;Maryland;Baltimore;Baltimore
+US-MA;Massachusetts;Boston;Boston
+MX;Mexico;Cancún;Cancún
+MX;Mexico;Guadalajara;Guadalajara
+MX;Mexico;Mexico City;M[e]xi[ck]o City, City of M[e]xi[ck]o, Ciudad de México, CDMX
+MX;Mexico;Monterrey;Monterrey
+MX;Mexico;Playa del Carmen;Playa del Carmen.{1,5}MX
+MX;Mexico;Tijuana;Tijuana
+US-MI;Michigan;Detroit;Detroit
+US-MI;Michigan;Lansing;Lansing
+US-MI;Michigan;Norwalk;Norwalk.{1,5}(Michigan|MI)
+US-MN;Minnesota;Austin;Austin.{1,5}(Minnesota|MN)
+US-MN;Minnesota;Minneapolis;Minneapolis
+US-MN;Minnesota;Saint Paul;Saint Paul
+US-MO;Missouri;Austin;Austin.{1,5}(Missoury|MO)
+US-MO;Missouri;Jefferson City;Jefferson City
+US-MO;Missouri;Kansas City;Kansas City
+US-MO;Missouri;St. Louis;(City of )?St. Louis
+MD;Moldova;Kishinev;Kishinev, Chi[ș]in[ă]u, Kishinyov, Кишинёв
+MD;Moldova;Tiraspol;Tiraspol, Тирасполь, Тираспіль
+MC;Monaco;Monaco;Monaco
+ME;Montenegro;Podgorica;Podgorica, Titograd, Подгорица, Титоград
+MA;Morocco;Casablanca;Casablanca, Kaẓa, الدار البيضاء
+MA;Morocco;Marrakech;Marrakech, Murrākuš
+MZ;Mozambique;Maputo;Maputo, Louren[ç]o Marques
+MM;Myanmar;Mandalay;Mandalay
+MM;Myanmar;Yangon;Yangon, Rangoon, ရန်ကုန်
+NP;Nepal;Kathmandu;Kathmandu, काठमाडौं
+NL;Netherlands;Amsterdam;Amsterdam
+NL;Netherlands;Hague;(The )?Hague, (Den )?Haag
+NL;Netherlands;Eindhoven;Eindhoven
+NL;Netherlands;Rotterdam;Rotterdam
+US-NV;Nevada;Austin;Austin.{1,5}(Nevada|NV)
+US-NV;Nevada;Carson City;Carson City
+US-NV;Nevada;Las Vegas;(Las )?Vegas
+US-NJ;New Jersey;Atlantic City;Atlantic City
+US-NM;New Mexico;Santa Fe;Santa F[eé]
+US-NY;New York;Bronx;Bronx
+US-NY;New York;Brooklyn;Brooklyn
+US-NY;New York;Manhattan;Manhattan
+US-NY;New York;Manhattan;Manhattan
+US-NY;New York;New York City;New York City, City (of )?New York, New York, New York.{1,5}(New York|NY), NYC
+US-NY;New York;Queens;Queens
+US-NY;New York;Staten Island;Staten Island
+NZ;New Zealand;Auckland;Auckland, T[ā]maki makau rau
+NZ;New Zealand;Portland;Portland.{1,5}(New Zealand|NZ)
+NI;Nicaragua;Managua;Managua
+NG;Nigeria;Abuja;Abuja
+NG;Nigeria;Ibadan;[I]b[a]d[a]n
+NG;Nigeria;Kano;Kano
+NG;Nigeria;Lagos;Lagos, Èkó
+US-NC;North Carolina;Raleigh;Raleigh
+KP;North Korea;Pyongyang;Pyongyang, 평양시
+NO;Norway;Oslo;Oslo
+US-OH;Ohio;Austin;Austin.{1,5}(Ohio|OH)
+US-OH;Ohio;Cincinnati;Cincinnati
+US-OH;Ohio;Cleveland;Cleveland
+US-OH;Ohio;Dayton;Dayton(.{1,5}(Ohio|OH))?
+US-OH;Ohio;Norwalk;Norwalk.{1,5}(Ohio|OH)
+US-OK;Oklahoma;Oklahoma City;Oklahoma City
+US-OK;Oklahoma;Tulsa;Tulsa
+OM;Oman;Muscat;Muscat, Masqa[ṭ], مسقط
+US-OR;Oregon;Austin;Austin.{1,5}(Oregon|OR)
+US-OR;Oregon;Portland;Portland.{1,5}(Oregon|OR), Portland
+PK;Pakistan;Faisalabad;Faisalabad, Lyallpur, فیصل آباد‎
+PK;Pakistan;Gujranwala;Gujranwala, گوجرانوالا‎
+PK;Pakistan;Islamabad;Isl[a]m[a]b[a]d, اسلام آباد‎
+PK;Pakistan;Karachi;Karachi, Karācī, ڪراچي‎
+PK;Pakistan;Lahore;Lahore, لہور‎, لاہور‎
+PK;Pakistan;Peshawar;Peshawar, پېښور ,پشاور ,پشور
+PK;Pakistan;Rawalpindi;Rawalpindi, Pindi, راولپنڈی, پنڈی‎
+PS;Palestine;Bethlehem;Bethlehem, Bei?t L[ae]he?m, בֵּית לֶחֶם‎, بيت لحم
+US-PA;Pennsylvania;Harrisburg;Harrisburg, Harrisbarrig
+US-PA;Pennsylvania;Philadelphia;Philadelphia, Pennsylvania
+US-PA;Pennsylvania;Pittsburgh;Pittsburgh
+PE;Peru;Cusco;Cu[sz]co
+PE;Peru;Lima;Lima
+PH;Philippines;Caloocan;Caloocan City
+PH;Philippines;Davao City;Davao City, Dakbayan sa Dabaw, Lungsod ng Dabaw
+PH;Philippines;Manila;Manila, Maynilà
+PH;Philippines;Quezon City;Quezon City, Lungsod Quezon, Ciudad Quezón, Kyusi
+PL;Poland;Gdańsk;Gda[ń]sk, Danzig
+PL;Poland;Kraków;Krak[o]w, Cracow
+PL;Poland;Łódź;[Ł][ó]d[ź]h?
+PL;Poland;Poznań;Pozna[ń], Posen
+PL;Poland;Warsaw;Warsaw, Warszawa
+PL;Poland;Wrocław;Wroc[ł]aw, Breslau, Vratislav
+PT;Portugal;Amadora;Amadora, Porcalhota
+PT;Portugal;Braga;Braga
+PT;Portugal;Coimbra;Coimbra
+PT;Portugal;Lisbon;Lisbo[na]
+PT;Portugal;Porto;O?porto
+PT;Portugal;Setúbal;Setúbal
+QA;Qatar;Doha;Doha, الدوحة‎, ad-Dawḥa
+RO;Romania;Bucharest;Bucharest, Bucure[ș]ti
+RO;Romania;Cluj-Napoca;Cluj(-Napoca)?
+RO;Romania;Vrancea;Vrancea
+RU;Russia;Chelyabinsk;Chelyabinsk, Челя́бинск
+RU;Russia;Krasnodar;Krasnodar, Краснода́р
+RU;Russia;Moscow;Moscow, Moskva, Moskau, Москва́
+RU;Russia;Nizhny Novgorod;Nizhny Novgorod, Ни́жний Но́вгород, Gorky, Горький
+RU;Russia;Novosibirsk;Novosibirsk, Новосибирск
+RU;Russia;Omsk;Omsk, Омск
+RU;Russia;Rostov;Rostov, Rostofa, Ростов
+RU;Russia;Rostov on Don;Rostov on Don, Rostov na Donu, Ростов на Дону
+RU;Russia;Saint Petersburg;Saint Petersburg, Sankt Peterburg, Санкт-Петербу́рг
+RU;Russia;Sochi;Sochi, Сочи
+RU;Russia;Yekaterinburg;Yekaterinburg, Ekaterinburg, Екатеринбу́рг
+SM;San Marino;San Marino;San Marino
+SA;Saudi Arabia;Al Khobar;(Al )?Khobar
+SA;Saudi Arabia;Dammam;Damm[a]m, الدمام
+SA;Saudi Arabia;Jeddah;J[ei]ddah?, جدة‎‎
+SA;Saudi Arabia;Mecca;Mecca, [MB]akkah, مكة المكرمة
+SA;Saudi Arabia;Riyadh;Riyadh, الرياض
+GB-SCT;Scotland;Edinburgh;Edinburgh, Dùn Èideann
+GB-SCT;Scotland;Glasgow;Glasgow, Glesga, Glaschu
+SN;Senegal;Dakar;Dakar
+RS;Serbia;Belgrade;Belgrade, Beograd, Београд
+SG;Singapore;Singapore;Singapore
+SK;Slovakia;Bratislava;Bratislava, Pre(ß|ss)burg, Pozsony
+SI;Slovenia;Ljubljana;Ljubljana
+ZA;South Africa;Cape Town;Cape Town, Kaapstad, iKapa
+ZA;South Africa;Durban;Durban, eThekwini
+ZA;South Africa;Ekurhuleni;Ekurhuleni
+ZA;South Africa;Johannesburg;Johannesburg, Joburg, Egoli
+KR;South Korea;Busan;[BP]usan, 부산시
+KR;South Korea;Daegu;[DT]aegu
+KR;South Korea;Daejeon;Daejeon, 대전시
+KR;South Korea;Incheon;Incheon, Inchŏn, 인천시
+KR;South Korea;Kwangju;Kwangju, 광주시
+KR;South Korea;Seoul;Seoul, 서울市
+KR;South Korea;Ulsan;Ulsan, 울산시
+ES;Spain;Barcelona;Barcell?ona
+ES;Spain;Granada;Granada
+ES;Spain;Madrid;Madrid
+ES;Spain;Málaga;M[á]laga
+ES;Spain;Murcia;Murcia
+ES;Spain;Seville;Sevill[ea]
+ES;Spain;Valencia;Val[e]ncia
+ES;Spain;Zaragoza;Zaragoza, Saragossa
+SD;Sudan;Khartoum;Khartoum, al-Kharṭūm, الخرطوم
+SE;Sweden;Gothenburg;Gothenburg, G[ö]teborg
+SE;Sweden;Stockholm;Stockholm
+CH;Switzerland;Bern;Bern[ea], Bernese, Bärn
+CH;Switzerland;Geneva;Geneva, Genèv[ea], Genf, G[ie]nevra, Ženeva
+CH;Switzerland;Zürich;Z[ü]rich
+SY;Syria;Damascus;Damascus, Dimashq, دمشق
+TW;Taiwan;Kaohsiung;Kaohsiung City, Takao, Takow, Takau, 高雄市
+TW;Taiwan;New Taipei City;New Taipei City, 新北市
+TW;Taiwan;Taichung;Taichung City, Táizhōng Shì, 臺中市
+TW;Taiwan;Taipei City;Taipei City, Taipeh-fu, Taihoku
+TZ;Tanzania;Dar es Salaam;D[a]r [ea]s Sal[a]a?m, Mzizima
+US-TN;Tennessee;Memphis;Memphis
+US-TN;Tennessee;Nashville;Nashville
+US-TX;Texas;Austin;Austin.{1,5}(Texas|TX), Austin
+US-TX;Texas;Dallas;Dallas
+US-TX;Texas;El Paso;El Paso
+US-TX;Texas;Houston;Houston
+US-TX;Texas;San Antonio;San Antonio
+TH;Thailand;Bangkok;Bangkok, Krung Thep, กรุงเทพมหานคร
+TH;Thailand;Chiang Mai;Chiang Mai, Chiengmai, Chiangmai, เชียงใหม่
+TH;Thailand;Pattaya;Ph?atth?aya, พัทยา
+TH;Thailand;Phuket;Phuket, Talang, Tanjung Salang, ภูเก็ต
+CD;The Democratic Republic of the Congo;Brazzaville;Brazzaville
+CD;The Democratic Republic of the Congo;Kinshasa;Kinshasa, Ville de Kinshasa, Léopoldville, Leopoldstad
+TN;Tunisia;Djerba;Djerba, Jerba, Jarbah
+TN;Tunisia;Tunis;Tunis, تونس
+TR;Turkey;Ankara;Ankara, Ancyra
+TR;Turkey;Edirne;Edirne
+TR;Turkey;Istanbul;[I]stanbul, Constantinople, Byzantium
+TR;Turkey;İzmir;[İ]zmir
+UG;Uganda;Kampala;Kampala
+UA;Ukraine;Kharkiv;Khark[io]v, Ха́рків, Ха́рьков
+UA;Ukraine;Kiev;K[iy]ev, Kyiv, Kyjev, Київ, Киев
+UA;Ukraine;Odessa;Odess?a, Одесс?а
+AE;United Arab Emirates;Abu Dhabi;Ab[u] Dh?ab[i], أبوظبي
+AE;United Arab Emirates;Dubai;Dubai, Dubayy, دبي
+AE;United Arab Emirates;Ras Al Khaimah;Ra'?s Al Kha[iy]mah
+UY;Uruguay;Montevideo;Montevideo
+US-UT;Utah;Salt Lake City;Salt Lake City
+UZ;Uzbekistan;Tashkent;T[ao]shkent, Ta[š]kent, Тошкент
+VE;Venezuela;Caracas;Santiago de León de Caracas, Caracas
+VE;Venezuela;Maracaibo;Maracaibo
+VN;Vietnam;Hanoi;Hanoi, H[à] N[ộ]i
+VN;Vietnam;Ho Chi Minh City;Ho Chi Minh City, Thành phố Hồ Chí Minh, Saig[o]n, S[à]i G[ò]n
+VN;Vietnam;Saigon;Saigon, S[à]i G[ò]n
+US-VA;Virginia;Virginia Beach;Virginia Beach
+GB-WLS;Wales;Cardiff;Cardiff, Caerdydd
+US-WA;Washington;Seatle;Seatle
+US-WA;Washington;Washington;Washington
+US-WI;Wisconsin;Milwaukee;Milwaukee
+US-WI;Wisconsin;Norwalk;Norwalk.{1,5}(Wisconsin|WI)
+YE;Yemen;Sana'a;Sana'?a, صٓنْعٓاء
+ZM;Zambia;Lusaka;Lusaka, Mwalusaka
+ZW;Zimbabwe;Bulawayo;Bulawayo, koBulawayo
+ZW;Zimbabwe;Harare;Harare, Salisbury
