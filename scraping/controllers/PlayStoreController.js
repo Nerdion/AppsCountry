@@ -3,8 +3,9 @@ var PlayStore = require('../models/PlayStore');
 module.exports.getplaystoreinfo = async function (req, res) {
     try {
         bodyInfo = req.body
-        if (1) {
-            response = await new PlayStore("com.facebook.katana").getPlayStoreInfo()
+        var pkgName=bodyInfo.pkgName
+        if (pkgName) {
+            response = await new PlayStore(pkgName).getPlayStoreInfo()
             res.send(response)
         } else {
             res.send({ "Success": false, "Error": error, "Payload": [] })

@@ -6,11 +6,11 @@ var googlesearch = require('../controllers/GoogleSearchController')
 var googleplayscrapper = require('../controllers/GooglePlayScrapperController')
 
 //Play Store api's
- api.use('/api/getplaystoreinfo', playstore.getplaystoreinfo);
+ api.use('/api/getplaystoreinfo', playstore.getplaystoreinfo);//{"pkgName":"com.epicgames.fortnite"}
 
 //Google Search api's
- api.use('/api/getsearchtermsresult', googlesearch.getSearchTermsResult);
- api.use('/api/getsearchdata', googlesearch.getSearchData);
+ api.use('/api/getsearchtermsresult', googlesearch.getSearchTermsResult);// not a api
+ api.use('/api/getsearchdata', googlesearch.getSearchData); // 
  api.use('/api/getcountryname', googlesearch.getCountryName);
 
 //Google Play Scrapper api's
