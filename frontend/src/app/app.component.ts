@@ -1,6 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, NgModule } from '@angular/core';
 import { AppServiceService } from './app-service.service';
-
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -10,6 +9,7 @@ export class AppComponent implements OnInit{
   title = 'frontend';
   data:any;
   response:any;
+  appSearch:string;
   loading=false;
   constructor(private service:AppServiceService){
 
@@ -45,5 +45,11 @@ export class AppComponent implements OnInit{
       "free": true,
       "cc":"CN",
     }];
+  }
+
+  searchForApp(theEvent) {
+    if(theEvent.length >= 3) {
+      console.log(theEvent);
+    }
   }
 }

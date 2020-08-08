@@ -14,7 +14,7 @@
     <div class="row">
         <div class="col m-5">
             <div class="form-group row">
-                <input class="form-control col-10" placeholder="Search apps..."/>
+                <input class="form-control col-10" placeholder="Search apps..." [(ngModel)]="appSearch" (ngModelChange)="searchForApp($event)"/>
                 <button class="form-control btn btn-dark col-1">
                     <mat-icon aria-hidden="false" aria-label="Example home icon">search</mat-icon>
                 </button>

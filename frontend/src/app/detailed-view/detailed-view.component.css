@@ -12,3 +12,8 @@
     height: 60px;
     border-radius: 50%;
 }
+
+.flag-icon {
+    font-size: 75px;
+    width: 100px;
+}
