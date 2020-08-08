@@ -1,11 +1,13 @@
 const countryDetector = require("../country-detector/index");
+var mongo = require('./model')
 module.exports = class GoogleSearch {
 	constructor(browser, page) {
 		this.browser = browser
 		this.page = page
 	}
 
-	async getSearchTermsResult(name) {
+	async getSearchTermsResult(app) {
+		var name = app.title;
 		var resultData = [];
 		var searchterm = ["", "country", "headquarters country", "owner headquarter country", "parent company country","parent company headquarter"];
 		var priority = [0.3, 0.3, 0.4, 0.6, 0.6,0.6]
@@ -19,7 +21,12 @@ module.exports = class GoogleSearch {
 			})
 		}
 		var countryData = await this.getCountryName(resultData)
-		return countryData;
+		var n = await mongo.appscountry.collection('AppsScrapedData').find({"title":name}).toArray();
+		if(n.length==0){
+			var data = {'appId' : app.appId,'developerId' : app.developerId,'scrappedData' : countryData};
+			let dbRes = await mongo.appscountry.collection('AppsScrapedData').insertOne(data);
+		}
+		return data;
 	}
 	async getSearchData(name) {
 		//let appName = 'com.brave.browser';

@@ -4,6 +4,7 @@ var mongo = require('../models/model')
 var playstore=require('../controllers/PlayStoreController')
 var googlesearch = require('../controllers/GoogleSearchController')
 var googleplayscrapper = require('../controllers/GooglePlayScrapperController')
+var formdetails = require('../controllers/FormDetailsController')
 
 //Play Store api's
  api.use('/api/getplaystoreinfo', playstore.getplaystoreinfo);//{"pkgName":"com.epicgames.fortnite"}
@@ -17,5 +18,8 @@ var googleplayscrapper = require('../controllers/GooglePlayScrapperController')
  api.use('/api/appslistbydev', googleplayscrapper.appslistbydev);
  api.use('/api/appscategory', googleplayscrapper.appscategory);
  api.use('/api/appslistbycategory', googleplayscrapper.appslistbycategory);
+
+ //Form Details api's
+ api.use('/api/appsearch',formdetails.appsearch) //{searchText:" "}
 
 module.exports = api ;
