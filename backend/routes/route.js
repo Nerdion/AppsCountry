@@ -20,6 +20,6 @@ var formdetails = require('../controllers/FormDetailsController')
  api.use('/api/appslistbycategory', googleplayscrapper.appslistbycategory);
 
  //Form Details api's
- api.use('/api/appsearch',formdetails.appsearch) //{searchText:" "}
+ api.use('/api/appsearchlist',formdetails.appsearch) //{searchText:" "}
 
 module.exports = api ;

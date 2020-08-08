@@ -15,23 +15,15 @@ export class AppComponent implements OnInit{
 
   }
   ngOnInit(){
-    this.getDetails();
+    this.getDetails()
   }
 
   getDetails(){
     this.loading=true;
-    /*
-    this.service.getSearchData().subscribe((response) => {
-      if(response){
-        this.loading=false
-        console.log("suc")
-         this.data = response;
-
-      }else{
-        this.loading=false
-        console.log("fail")
-      }
-    })*/
+ 
+    // this.service.getSearchData().subscribe((response) => {
+      
+    // })
      this.response = [{
       "title": "Call of Duty®: Mobile",
       "appId": "com.activision.callofduty.shooter",
@@ -49,7 +41,14 @@ export class AppComponent implements OnInit{
 
   searchForApp(theEvent) {
     if(theEvent.length >= 3) {
-      console.log(theEvent);
+      var param = {
+        searchText:theEvent
+      }
+      this.service.getSearchData(param).subscribe((response) => {
+        if(response){
+          console.log(response)
+        }
+      })
     }
   }
 }

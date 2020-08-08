@@ -8,7 +8,7 @@ export class AppServiceService {
   
   constructor(private http:HttpClient,private confService: ConfigService) { }
   URLS = this.confService.CONFIG;
-  getSearchData(){
-    return this.http.get(this.URLS.getPlayStoreInfo)
+  getSearchData(param:any){
+    return this.http.post(this.URLS.getSearchList,param)
   }
 }

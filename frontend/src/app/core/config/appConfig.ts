@@ -19,8 +19,10 @@ export class ConfigService {
     getSearchData: API_ENDPOINT+'api/getsearchdata',
     getCountryName: API_ENDPOINT+'api/getcountryname',
     //Google Play Scrapper api's
-    appslistbydev: API_ENDPOINT+'api/appslistbydev',
-    appscategory: API_ENDPOINT+'api/appscategory',
-    appslistbycategory: API_ENDPOINT+'api/appslistbycategory'
+    appsListByDev: API_ENDPOINT+'api/appslistbydev',
+    appsCategory: API_ENDPOINT+'api/appscategory',
+    appsListByCategory: API_ENDPOINT+'api/appslistbycategory',
+    getSearchList:API_ENDPOINT+'api/appsearchlist'
+
   };
 }

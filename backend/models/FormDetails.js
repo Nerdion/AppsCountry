@@ -4,7 +4,7 @@ module.exports = class FormDetails {
     constructor() { }
 
     async appSearch(bodyInfo) {
-        let searchText = bodyInfo.searchText
+        let searchText = bodyInfo.searchText.toString();
         var conmatch = { "title": { "$regex": searchText, "$options": 'i' } }
         var grp = { "_id": { "AppName": "$title", "AppId": "$appId" } }
         var pro = { "_id": 0, "AppName": "$_id.AppName", "AppId": "$_id.AppId" }
