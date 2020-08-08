@@ -1,6 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, NgModule } from '@angular/core';
 import { AppServiceService } from './app-service.service';
-
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -9,6 +8,8 @@ import { AppServiceService } from './app-service.service';
 export class AppComponent implements OnInit{
   title = 'frontend';
   data:any;
+  response:any;
+  appSearch:string;
   loading=false;
   constructor(private service:AppServiceService){
 
@@ -19,6 +20,7 @@ export class AppComponent implements OnInit{
 
   getDetails(){
     this.loading=true;
+    /*
     this.service.getSearchData().subscribe((response) => {
       if(response){
         this.loading=false
@@ -29,6 +31,25 @@ export class AppComponent implements OnInit{
         this.loading=false
         console.log("fail")
       }
-    })
+    })*/
+     this.response = [{
+      "title": "Call of Duty®: Mobile",
+      "appId": "com.activision.callofduty.shooter",
+      "url": "https://play.google.com/store/apps/details?id=com.activision.callofduty.shooter",
+      "icon": "https://lh3.googleusercontent.com/6lEEhm2WZojAbZ1uqRJb-KEmT24xydDd5I0QjABtlNOeDr9NrNxztXe67AArHUFuqSI",
+      "developer": "Activision Publishing, Inc.",
+      "developerId": "Activision+Publishing,+Inc.",
+      "priceText": "FREE",
+      "currency": undefined,
+      "price": 0.00,
+      "free": true,
+      "cc":"CN",
+    }];
+  }
+
+  searchForApp(theEvent) {
+    if(theEvent.length >= 3) {
+      console.log(theEvent);
+    }
   }
 }

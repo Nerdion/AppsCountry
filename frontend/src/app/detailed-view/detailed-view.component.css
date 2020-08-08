@@ -1,0 +1,19 @@
+#page-section {
+    padding: 1rem;
+    background: #E5E5E5;
+}
+
+#page-section > .container {
+    background: white;
+    padding:1em;
+}
+
+.app-icon {
+    height: 60px;
+    border-radius: 50%;
+}
+
+.flag-icon {
+    font-size: 75px;
+    width: 100px;
+}

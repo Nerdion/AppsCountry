@@ -1,0 +1,44 @@
+<div id="page-section">
+    <div class="container">
+        <div class="row">
+            <div class="col-5">
+                <div class="row">
+                    <div *ngIf="detailList.icon" class="col-2">
+                        <img class="img-responsive app-icon" src="{{detailList.icon}}"/>
+                    </div>
+                    <div class="col-10">
+                        <h2 *ngIf="detailList.title">{{detailList.title}}</h2>
+                        <span *ngIf="detailList.appId" class="text-dark">{{detailList.appId}}</span>
+                    </div>
+                </div>
+                <div *ngIf="detailList.developer" class="row">
+                    <div class="col m-3">
+                        <p>Developed By - {{detailList.developer}}</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-2 dflex align-items-center">
+                <div class="row">
+                    <button class="col-10" mat-raised-button color="primary" aria-label="Install app" (click)="installApp()">
+                        <mat-icon>get_app</mat-icon>
+                        Install
+                    </button>
+                </div>
+                <div class="m-2"></div>
+                <div class="row">
+                    <button class="col-10" mat-raised-button color="warn" aria-label="Remove app">
+                        <mat-icon>delete</mat-icon>
+                        Remove
+                    </button>
+                </div>
+            </div>
+            <div class="col-5 text-center">
+                <div>
+                    <span class="flag-icon" [ngClass]="countryCode"></span>
+                    <div class="m-1"></div>
+                    <h1>{{countryName}}</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

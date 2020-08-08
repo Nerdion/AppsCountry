@@ -1,5 +1,26 @@
-<!-- <div class="spinner-wrapper" [hidden]="!loading">
-    <mat-progress-spinner class='progress-loader' [mode]="'indeterminate'">
-    </mat-progress-spinner>
-</div> -->
-{{data.devName}}
+
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <div class="m-5"></div>
+            <div class="m-5"></div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <h1 id="pageTitle">Apps Country</h1>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col m-5">
+            <div class="form-group row">
+                <input class="form-control col-10" placeholder="Search apps..." [(ngModel)]="appSearch" (ngModelChange)="searchForApp($event)"/>
+                <button class="form-control btn btn-dark col-1">
+                    <mat-icon aria-hidden="false" aria-label="Example home icon">search</mat-icon>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+<h1>{{response.cc}}</h1>
+<app-detailed-view [formgroups]="response"></app-detailed-view>
