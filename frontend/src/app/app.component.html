@@ -11,13 +11,31 @@
         </div>
     </div>
     <div class="row">
-        <div class="col m-5">
-            <div class="form-group row">
-                <input class="form-control col-10" placeholder="Search apps..." [(ngModel)]="appSearch"
+        <div class="col-12 m-5">
+            <div class="row">
+                <div class="col">
+                    <div class="text-center">
+                        <div class="row">
+                        <mat-form-field class="col-12 page-input">
+                            <mat-label>Search here</mat-label>
+                            <input type="text" placeholder="App Name" matInput class="col-12" [formControl]="myControl" [matAutocomplete]="auto" [(ngModel)]="appSearch"
+                            (ngModelChange)="searchForApp()" (keyup.enter)="getAppDetails()">
+                        
+                            <mat-autocomplete #auto="matAutocomplete">
+                                <mat-option *ngFor="let option of filteredOptions | async" [value]="option" >
+                                    {{option}}
+                                </mat-option>
+                            </mat-autocomplete>
+                        </mat-form-field>
+                    </div>
+                    </div>
+                </div>
+                <!--
+                <input class="form-control" placeholder="Search apps..." [(ngModel)]="appSearch"
                     (ngModelChange)="searchForApp($event)" />
                 <button class="form-control btn btn-dark col-1">
                     <mat-icon aria-hidden="false" aria-label="Example home icon">search</mat-icon>
-                </button>
+                </button>-->
                 <!--
                 <form>
                     <mat-form-field>

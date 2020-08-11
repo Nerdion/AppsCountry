@@ -1,5 +1,8 @@
 import { Component, OnInit, NgModule } from '@angular/core';
 import { AppServiceService } from './app-service.service';
+import { FormControl } from '@angular/forms';
+import { Observable } from 'rxjs';
+import { map, startWith } from 'rxjs/operators';
 
 @Component({
   selector: 'app-root',
@@ -7,21 +10,39 @@ import { AppServiceService } from './app-service.service';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit{
+  
   title = 'frontend';
   data:any;
-  response:any;
-  appSearch:string;
+  response:any = [];
+  appSearch:string = '';
   loading=false;
-  constructor(private service:AppServiceService){
 
+  myControl = new FormControl();
+  options = [];
+
+  filteredOptions: Observable<string[]>
+
+  constructor(private service:AppServiceService){
+ 
   }
   ngOnInit(){
-    this.getDetails()
+    //this.getAppDetails()
+    this.filteredOptions = this.myControl.valueChanges
+    .pipe(
+      startWith(''),
+      map(value => this._filter(value))
+    );
   }
 
-  getDetails(){
+  private _filter(value: string): string[] {
+    const filterValue = value.toLowerCase();
+
+    return this.options.filter(option => option.toLowerCase().includes(filterValue));
+  }
+
+  getAppDetails(){
     this.loading=true;
- 
+    console.log("I was used")
     // this.service.getSearchData().subscribe((response) => {
       
     // })
@@ -40,14 +61,20 @@ export class AppComponent implements OnInit{
     }];
   }
 
-  searchForApp(theEvent) {
-    if(theEvent.length >= 3) {
+  searchForApp() {
+    if(this.appSearch.length >= 1) {
       var param = {
-        searchText:theEvent
+        searchText:this.appSearch
       }
       this.service.getSearchData(param).subscribe((response) => {
         if(response){
+          this.options = []
+
           console.log(response)
+          
+          for(let i=0; i<Object.keys(response).length; i++) {
+            this.options.push(response[i].AppName)
+          }
         }
       })
     }
