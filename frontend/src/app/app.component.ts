@@ -46,7 +46,7 @@ export class AppComponent implements OnInit{
     // this.service.getSearchData().subscribe((response) => {
       
     // })
-     this.response = [{
+    this.response = [{
       "title": "Call of Duty®: Mobile",
       "appId": "com.activision.callofduty.shooter",
       "url": "https://play.google.com/store/apps/details?id=com.activision.callofduty.shooter",

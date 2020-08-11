@@ -19,10 +19,10 @@
                         <mat-form-field class="col-12 page-input">
                             <mat-label>Search here</mat-label>
                             <input type="text" placeholder="App Name" matInput class="col-12" [formControl]="myControl" [matAutocomplete]="auto" [(ngModel)]="appSearch"
-                            (ngModelChange)="searchForApp()" (keyup.enter)="getAppDetails()">
+                            (ngModelChange)="searchForApp()">
                         
                             <mat-autocomplete #auto="matAutocomplete">
-                                <mat-option *ngFor="let option of filteredOptions | async" [value]="option" >
+                                <mat-option *ngFor="let option of filteredOptions | async" [value]="option" (onSelectionChange) = "getAppDetails()">
                                     {{option}}
                                 </mat-option>
                             </mat-autocomplete>

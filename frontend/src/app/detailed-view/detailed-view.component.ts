@@ -1,4 +1,4 @@
-import { Component, OnInit,Input } from '@angular/core';
+import { Component, OnInit,Input, OnChanges, SimpleChanges } from '@angular/core';
 import {getName} from 'country-list';
 import { NgModel } from '@angular/forms';
 
@@ -7,7 +7,7 @@ import { NgModel } from '@angular/forms';
   templateUrl: './detailed-view.component.html',
   styleUrls: ['./detailed-view.component.css','../../../node_modules/flag-icon-css/css/flag-icon.css'],
 })
-export class DetailedViewComponent implements OnInit {
+export class DetailedViewComponent implements OnInit, OnChanges {
   @Input() formgroups = [];
   isDataLoaded:boolean = false;
   detailList:any;
@@ -16,7 +16,19 @@ export class DetailedViewComponent implements OnInit {
   constructor() { 
   }
   ngOnInit(): void {
-    console.log(this.formgroups);
+    this.displayData()
+  }
+
+  ngOnChanges(changes: SimpleChanges) {
+    this.formgroups = changes['formgroups'].currentValue
+    this.displayData()
+  }
+
+  installApp() {
+    window.open(this.detailList.url);
+  }
+
+  displayData() {
     if(this.formgroups.length > 0) {
       this.detailList = this.formgroups[0];
       
@@ -27,10 +39,6 @@ export class DetailedViewComponent implements OnInit {
     } else {
       this.isDataLoaded = false;
     }
-  }
-
-  installApp() {
-    window.open(this.detailList.url);
   }
 
 }
