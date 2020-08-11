@@ -22,7 +22,7 @@
                             (ngModelChange)="searchForApp()">
                         
                             <mat-autocomplete #auto="matAutocomplete">
-                                <mat-option *ngFor="let option of filteredOptions | async" [value]="option" (onSelectionChange) = "getAppDetails()">
+                                <mat-option *ngFor="let option of filteredOptions | async" [value]="option" (onSelectionChange) = "getAppDetails($event)">
                                     {{option}}
                                 </mat-option>
                             </mat-autocomplete>
@@ -51,4 +51,4 @@
         </div>
     </div>
 </div>
-<app-detailed-view [formgroups]="response"></app-detailed-view>
+<app-detailed-view [formgroups]="appData"></app-detailed-view>

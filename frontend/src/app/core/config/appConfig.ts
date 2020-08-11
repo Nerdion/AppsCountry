@@ -22,7 +22,8 @@ export class ConfigService {
     appsListByDev: API_ENDPOINT+'api/appslistbydev',
     appsCategory: API_ENDPOINT+'api/appscategory',
     appsListByCategory: API_ENDPOINT+'api/appslistbycategory',
-    getSearchList:API_ENDPOINT+'api/appsearchlist'
+    getSearchList:API_ENDPOINT+'api/appsearchlist',
+    getAppDetails:API_ENDPOINT+'api/getappdetails',
 
   };
 }

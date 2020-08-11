@@ -13,7 +13,7 @@ export class AppComponent implements OnInit{
   
   title = 'frontend';
   data:any;
-  response:any = [];
+  appData:any = [];
   appSearch:string = '';
   loading=false;
 
@@ -40,25 +40,17 @@ export class AppComponent implements OnInit{
     return this.options.filter(option => option.toLowerCase().includes(filterValue));
   }
 
-  getAppDetails(){
+  getAppDetails(event){
     this.loading=true;
-    console.log("I was used")
-    // this.service.getSearchData().subscribe((response) => {
-      
-    // })
-    this.response = [{
-      "title": "Call of Duty®: Mobile",
-      "appId": "com.activision.callofduty.shooter",
-      "url": "https://play.google.com/store/apps/details?id=com.activision.callofduty.shooter",
-      "icon": "https://lh3.googleusercontent.com/6lEEhm2WZojAbZ1uqRJb-KEmT24xydDd5I0QjABtlNOeDr9NrNxztXe67AArHUFuqSI",
-      "developer": "Activision Publishing, Inc.",
-      "developerId": "Activision+Publishing,+Inc.",
-      "priceText": "FREE",
-      "currency": undefined,
-      "price": 0.00,
-      "free": true,
-      "cc":"CN",
-    }];
+    var param = {
+      title:event.source.value
+    }
+    this.service.getAppDetails(param).subscribe((response) => {
+      if(response){
+        response[0]['countryCode']='CN'
+        this.appData=response
+      }
+    })  
   }
 
   searchForApp() {

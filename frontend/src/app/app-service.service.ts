@@ -11,4 +11,7 @@ export class AppServiceService {
   getSearchData(param:any){
     return this.http.post(this.URLS.getSearchList,param)
   }
+  getAppDetails(param:any){
+    return this.http.post(this.URLS.getAppDetails,param)
+  }
 }

@@ -18,9 +18,9 @@ module.exports = class FormDetails {
         return res
     }
     async getAppDetails(bodyInfo) {
-        let appId = bodyInfo.appId.toString();
+        let title = bodyInfo.title.toString();
         try {
-            let match = { 'appId': appId };
+            let match = { 'title': title };
             let filter = [
                 { 
                     "$match": match 
