@@ -17,4 +17,20 @@ module.exports = class FormDetails {
 
         return res
     }
+    async getAppDetails(bodyInfo) {
+        let appId = bodyInfo.appId.toString();
+        try {
+            let match = { 'appId': appId };
+            let filter = [
+                { 
+                    "$match": match 
+                }
+                ];
+            var res = await mongo.appscountry.collection('apps').aggregate(filter).toArray();
+        } catch (e) {
+            return { "Success": false, "Error": e.toString(), "Payload": [] };
+        }
+
+        return res;
+    }
 }

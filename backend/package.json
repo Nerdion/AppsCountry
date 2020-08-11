@@ -16,7 +16,7 @@
     "express": "^4.17.1",
     "fs": "0.0.1-security",
     "google-play-scraper": "^8.0.1",
-    "mongodb": "^3.5.9",
+    "mongodb": "^3.6.0",
     "puppeteer": "^3.3.0"
   }
 }
