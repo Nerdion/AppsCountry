@@ -32,9 +32,9 @@ export class DetailedViewComponent implements OnInit, OnChanges {
     if(this.formgroups.length > 0) {
       this.detailList = this.formgroups[0];
       
-      //this.countryCode = 'flag-icon-' + this.detailList.cc.toLowerCase();
+      //this.countryCode = 'flag-icon-' + this.detailList.countryCode.toLowerCase();
       //implement this using REST, also send countryName along with code
-      //this.countryName = getName(this.detailList.cc);
+      //this.countryName = getName(this.detailList.countryCode);
       this.isDataLoaded = true;
     } else {
       this.isDataLoaded = false;
