@@ -26,3 +26,17 @@ module.exports.getappdetails = async function (req, res) {
         res.send({ "Success": false, "Error": e.toString(), "Payload": [] });
     }
 };
+
+module.exports.getd3data = async function (req, res) {
+    try {
+        var bodyInfo = req.body
+        if (1) {
+            var response = await new FormDetails().getD3Data();
+            res.send(response)
+        } else {
+            res.send({ "Success": false, "Error": error, "Payload": [] })
+        }
+    } catch (e) {
+        res.send({ "Success": false, "Error": e.toString(), "Payload": [] });
+    }
+};

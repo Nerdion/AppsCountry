@@ -22,5 +22,6 @@ var formdetails = require('../controllers/FormDetailsController')
  //Form Details api's
  api.use('/api/appsearchlist',formdetails.appsearch) //{searchText:" "}
  api.use('/api/getappdetails',formdetails.getappdetails) //{appId:""}
+ api.use('/api/getd3data',formdetails.getd3data) //{appId:""}
 
 module.exports = api ;
