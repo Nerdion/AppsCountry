@@ -7,6 +7,11 @@ module.exports = class GoogleSearch {
 	}
 
 	async getSearchTermsResult(app) {
+		let appdata = await mongo.appscountry.collection('AppsScrapedData').find({"appId":app.appId}).toArray()
+		if(appdata.length!=0){
+			console.log('exists')
+			return 0
+		}
 		var name = app.title;
 		var resultData = [];
 		var searchterm = ["", "country", "headquarters country", "owner headquarter country", "parent company country","parent company headquarter"];

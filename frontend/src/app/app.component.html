@@ -16,18 +16,20 @@
                 <div class="col">
                     <div class="text-center">
                         <div class="row">
-                        <mat-form-field class="col-12 page-input">
-                            <mat-label>Search here</mat-label>
-                            <input type="text" placeholder="App Name" matInput class="col-12" [formControl]="myControl" [matAutocomplete]="auto" [(ngModel)]="appSearch"
-                            (ngModelChange)="searchForApp()">
-                        
-                            <mat-autocomplete #auto="matAutocomplete">
-                                <mat-option *ngFor="let option of filteredOptions | async" [value]="option" (onSelectionChange) = "getAppDetails($event)">
-                                    {{option}}
-                                </mat-option>
-                            </mat-autocomplete>
-                        </mat-form-field>
-                    </div>
+                            <mat-form-field class="col-12 page-input">
+                                <mat-label>Search here</mat-label>
+                                <input type="text" placeholder="App Name" matInput class="col-12"
+                                    [formControl]="myControl" [matAutocomplete]="auto" [(ngModel)]="appSearch"
+                                    (ngModelChange)="searchForApp()">
+
+                                <mat-autocomplete #auto="matAutocomplete">
+                                    <mat-option *ngFor="let option of filteredOptions | async" [value]="option"
+                                        (onSelectionChange)="getAppDetails($event)">
+                                        {{option}}
+                                    </mat-option>
+                                </mat-autocomplete>
+                            </mat-form-field>
+                        </div>
                     </div>
                 </div>
                 <!--
@@ -50,5 +52,9 @@
             </div>
         </div>
     </div>
+    <app-bar></app-bar>
+    <app-pie></app-pie>
+    <app-scatter></app-scatter>
+    <app-geomap></app-geomap>
 </div>
 <app-detailed-view [formgroups]="appData"></app-detailed-view>

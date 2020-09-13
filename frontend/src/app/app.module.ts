@@ -12,11 +12,19 @@ import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { BarComponent } from './bar/bar.component';
+import { PieComponent } from './pie/pie.component';
+import { GeomapComponent } from './geomap/geomap.component';
+import { ScatterComponent } from './scatter/scatter.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     DetailedViewComponent,
+    BarComponent,
+    PieComponent,
+    GeomapComponent,
+    ScatterComponent,
   ],
   imports: [
     BrowserModule,
