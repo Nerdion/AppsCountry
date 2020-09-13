@@ -14,4 +14,7 @@ export class AppServiceService {
   getAppDetails(param:any){
     return this.http.post(this.URLS.getAppDetails,param)
   }
+  getD3Data(param:any){
+    return this.http.post(this.URLS.getD3Data,param)
+  }
 }

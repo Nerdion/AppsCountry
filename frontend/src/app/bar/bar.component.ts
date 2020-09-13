@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit ,Input} from '@angular/core';
 import * as d3 from "d3";
 @Component({
   selector: 'app-bar',
@@ -6,6 +6,7 @@ import * as d3 from "d3";
   styleUrls: ['./bar.component.css']
 })
 export class BarComponent implements OnInit {
+  @Input() formgroups = [];
   private data = [
     {"Framework": "Vue", "Stars": "166443", "Released": "2014"},
     {"Framework": "React", "Stars": "150793", "Released": "2013"},
@@ -21,6 +22,7 @@ export class BarComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+    this.data = this.formgroups
     this.createSvg();
     this.drawBars(this.data);
   }

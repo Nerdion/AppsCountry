@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,Input } from '@angular/core';
 import * as d3 from "d3";
 @Component({
   selector: 'app-scatter',
@@ -6,6 +6,7 @@ import * as d3 from "d3";
   styleUrls: ['./scatter.component.css']
 })
 export class ScatterComponent implements OnInit {
+  @Input() formgroups = [];
   private data = [
     {"Framework": "Vue", "Stars": "166443", "Released": "2014"},
     {"Framework": "React", "Stars": "150793", "Released": "2013"},
@@ -21,6 +22,7 @@ export class ScatterComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+    this.data = this.formgroups
     this.createSvg();
     this.drawPlot();
   }

@@ -52,9 +52,9 @@
             </div>
         </div>
     </div>
-    <app-bar></app-bar>
-    <app-pie></app-pie>
-    <app-scatter></app-scatter>
-    <app-geomap></app-geomap>
+    <app-bar>[formgroups]="d3data"</app-bar>
+    <app-pie>[formgroups]="d3data"</app-pie>
+    <app-scatter>[formgroups]="d3data"</app-scatter>
+    <app-geomap>[formgroups]="d3data"</app-geomap>
 </div>
 <app-detailed-view [formgroups]="appData"></app-detailed-view>

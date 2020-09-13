@@ -10,6 +10,7 @@ export class GeomapComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+    
   }
 
 }

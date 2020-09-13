@@ -13,6 +13,7 @@ export class AppComponent implements OnInit{
   
   title = 'frontend';
   data:any;
+  d3data:any;
   appData:any = [];
   appSearch:string = '';
   loading=false;
@@ -27,6 +28,7 @@ export class AppComponent implements OnInit{
   }
   ngOnInit(){
     //this.getAppDetails()
+    this.getd3data()
     this.filteredOptions = this.myControl.valueChanges
     .pipe(
       startWith(''),
@@ -39,7 +41,17 @@ export class AppComponent implements OnInit{
 
     return this.options.filter(option => option.toLowerCase().includes(filterValue));
   }
-
+  getd3data(){
+    var param = {
+      'data':true
+    }
+    this.service.getD3Data(param).subscribe((response) => {
+      if(response){
+        this.d3data = response
+      }
+    }) 
+    
+  }
   getAppDetails(event){
     this.loading=true;
     var param = {

@@ -24,6 +24,7 @@ export class ConfigService {
     appsListByCategory: API_ENDPOINT+'api/appslistbycategory',
     getSearchList:API_ENDPOINT+'api/appsearchlist',
     getAppDetails:API_ENDPOINT+'api/getappdetails',
+    getD3Data:API_ENDPOINT+'api/getd3data'
 
   };
 }
