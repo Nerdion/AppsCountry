@@ -1,5 +1,6 @@
 import { Component, OnInit,Input } from '@angular/core';
 import * as d3 from "d3";
+import { AppServiceService } from '../app-service.service';
 @Component({
   selector: 'app-scatter',
   templateUrl: './scatter.component.html',
@@ -7,24 +8,31 @@ import * as d3 from "d3";
 })
 export class ScatterComponent implements OnInit {
   @Input() formgroups = [];
-  private data = [
-    {"Framework": "Vue", "Stars": "166443", "Released": "2014"},
-    {"Framework": "React", "Stars": "150793", "Released": "2013"},
-    {"Framework": "Angular", "Stars": "62342", "Released": "2016"},
-    {"Framework": "Backbone", "Stars": "27647", "Released": "2010"},
-    {"Framework": "Ember", "Stars": "21471", "Released": "2011"},
-  ];
+  d3data:any;
+  private data :any;
   private svg;
   private margin = 50;
   private width = 750 - (this.margin * 2);
   private height = 400 - (this.margin * 2);
 
-  constructor() { }
-
+  constructor(private service:AppServiceService){}
   ngOnInit(): void {
-    this.data = this.formgroups
+    this.getd3data()
+    this.data = this.service.getHighRApp()
     this.createSvg();
     this.drawPlot();
+  }
+
+  getd3data(){
+    var param = {
+      'data':true
+    }
+    this.service.getD3Data(param).subscribe((response) => {
+      if(response){
+        this.d3data = response
+      }
+    }) 
+    
   }
   private createSvg(): void {
     this.svg = d3.select("figure#scatter")
@@ -37,7 +45,7 @@ export class ScatterComponent implements OnInit {
 private drawPlot(): void {
   // Add X axis
   const x = d3.scaleLinear()
-  .domain([2009, 2017])
+  .domain([2009,2017])
   .range([ 0, this.width ]);
   this.svg.append("g")
   .attr("transform", "translate(0," + this.height + ")")
@@ -45,7 +53,7 @@ private drawPlot(): void {
 
   // Add Y axis
   const y = d3.scaleLinear()
-  .domain([0, 200000])
+  .domain([0, 40000])
   .range([ this.height, 0]);
   this.svg.append("g")
   .call(d3.axisLeft(y));
@@ -67,7 +75,7 @@ private drawPlot(): void {
   .data(this.data)
   .enter()
   .append("text")
-  .text(d => d.Framework)
+  .text(d => d.CountryCode)
   .attr("x", d => x(d.Released))
   .attr("y", d => y(d.Stars))
 }

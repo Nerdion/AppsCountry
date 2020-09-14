@@ -53,19 +53,63 @@ module.exports = class FormDetails {
         //       Math.random() * (max - min + 1) + min
         //     )
         //   }
+        // var mapFunction1 = function() {
+        //     emit(this.countryCode, this.price);
+        //  };
+         
+        //  var reduceFunction1 = function(keyCustId, valuesPrices) {
+        //     return Array.sum(valuesPrices);
+        //  };
         
-
-        let filter = [
-            {
-                "$group":
-                {
-                    "_id": "$countryCode", "field1":{ "$sum": 1 }
-                }
-            }
+        let cnfilter = [
+            { "$match": { "countryCode": "CN" } },
+            { "$group": { "_id": "$developer", "field1": { "$sum": 1.00 } } }
         ]
+        let usfilter =[
+            { "$match": { "countryCode": "US" } },
+            { "$group": { "_id": "$developer", "field1": { "$sum": 1.00 } } }
+        ]
+        let infilter =[
+            { "$match": { "countryCode": "IN" } },
+            { "$group": { "_id": "$developer", "field1": { "$sum": 1.00 } } }
+        ]
+        let ukfilter =[
+            { "$match": { "countryCode": "CN" } },
+            { "$group": { "_id": "$developer", "field1": { "$sum": 1.00 } } }
+        ]
+        let filter = [
+            { "$group": { "_id": "$countryCode", "field1": { "$sum": 1.00 } } },
+            { "$project": { "_id": 1.00, "field1": 1.00, "countryCode": "$_id", "TotalCount": "$field" } }
+        ]
+        var indata = await mongo.appscountry.collection('appsCC').aggregate(infilter).toArray()
+        var cndata = await mongo.appscountry.collection('appsCC').aggregate(cnfilter).toArray()
+        var usdata = await mongo.appscountry.collection('appsCC').aggregate(usfilter).toArray()
+        var ukdata = await mongo.appscountry.collection('appsCC').aggregate(ukfilter).toArray()
+        var india = {
+            "CountryCode":'IN',
+            "TotalDev":indata.length
+        }
+        var china = {
+            "CountryCode":'CN',
+            "TotalDev":cndata.length
+        }
+        var us = {
+            "CountryCode":'US',
+            "TotalDev":usdata.length
+        }
+        var uk = {
+            "CountryCode":'UK',
+            "TotalDev":ukdata.length
+        }
+        var cd =[]
+        cd.push(india);
+        cd.push(china);
+        cd.push(us);
+        cd.push(uk);
+
         var data = await mongo.appscountry.collection('appsCC').aggregate(filter).toArray()
 
-        return data
+        return {"data":data, "dcd":cd}
 
         // let data = await mongo.appscountry.collection('apps').find().toArray();
         // for(let i=0;i<data.length;i++){

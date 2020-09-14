@@ -1,5 +1,6 @@
-import { Component, OnInit,Input } from '@angular/core';
+import { Component, OnInit,Input} from '@angular/core';
 import * as d3 from "d3";
+import { AppServiceService } from '../app-service.service';
 
 @Component({
   selector: 'app-pie',
@@ -8,13 +9,8 @@ import * as d3 from "d3";
 })
 export class PieComponent implements OnInit {
   @Input() formgroups = [];
-  private data = [
-    {"Framework": "Vue", "Stars": "166443", "Released": "2014"},
-    {"Framework": "React", "Stars": "150793", "Released": "2013"},
-    {"Framework": "Angular", "Stars": "62342", "Released": "2016"},
-    {"Framework": "Backbone", "Stars": "27647", "Released": "2010"},
-    {"Framework": "Ember", "Stars": "21471", "Released": "2011"},
-  ];
+  d3data:any
+  private data :any;
   private svg;
   private margin = 50;
   private width = 750;
@@ -23,14 +19,15 @@ export class PieComponent implements OnInit {
   private radius = Math.min(this.width, this.height) / 2 - this.margin;
   private colors;
 
-  constructor() { }
-
+  constructor(private service:AppServiceService){}
   ngOnInit(): void {
-    this.data = this.formgroups
+    this.getd3data()
+    this.data = this.service.getddata()
     this.createSvg();
     this.createColors();
     this.drawChart();
   }
+  
 
   private createSvg(): void {
     this.svg = d3.select("figure#pie")
@@ -42,6 +39,17 @@ export class PieComponent implements OnInit {
       "transform",
       "translate(" + this.width / 2 + "," + this.height / 2 + ")"
     );
+}
+getd3data(){
+  var param = {
+    'data':true
+  }
+  this.service.getD3Data(param).subscribe((response) => {
+    if(response){
+      this.d3data = response
+    }
+  }) 
+  
 }
 private createColors(): void {
   this.colors = d3.scaleOrdinal()
@@ -76,7 +84,7 @@ private drawChart(): void {
   .data(pie(this.data))
   .enter()
   .append('text')
-  .text(d => d.data.Framework)
+  .text(d => d.data.CountryCode)
   .attr("transform", d => "translate(" + labelLocation.centroid(d) + ")")
   .style("text-anchor", "middle")
   .style("font-size", 15);

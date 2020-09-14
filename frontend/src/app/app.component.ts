@@ -28,7 +28,7 @@ export class AppComponent implements OnInit{
   }
   ngOnInit(){
     //this.getAppDetails()
-    this.getd3data()
+    //this.getd3data()
     this.filteredOptions = this.myControl.valueChanges
     .pipe(
       startWith(''),
