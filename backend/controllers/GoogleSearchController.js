@@ -7,7 +7,9 @@ module.exports.getSearchTermsResult = async function (req, res) {
     try {
         bodyInfo = req.body
         if (1) {
-            const browser = await puppeteer.launch();
+            const browser = await puppeteer.launch({
+                executablePath:"C:/Program Files/BraveSoftware/Brave-Browser/Application/Brave.exe",
+            });
             const page = await browser.newPage();
             await page.setViewport({
                 width: 1080,

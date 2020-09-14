@@ -16,6 +16,7 @@ import { BarComponent } from './bar/bar.component';
 import { PieComponent } from './pie/pie.component';
 import { GeomapComponent } from './geomap/geomap.component';
 import { ScatterComponent } from './scatter/scatter.component';
+import { DonutComponent } from './donut/donut.component';
 
 @NgModule({
   declarations: [
@@ -25,6 +26,7 @@ import { ScatterComponent } from './scatter/scatter.component';
     PieComponent,
     GeomapComponent,
     ScatterComponent,
+    DonutComponent,
   ],
   imports: [
     BrowserModule,

@@ -9,7 +9,7 @@ import * as d3 from "d3";
 export class BarComponent implements OnInit {
   @Input() formgroups: []
   d3data: any;
- private data :any 
+  private data :any 
   private svg;
   private margin = 50;
   private width = 750 - (this.margin * 2);
@@ -18,7 +18,6 @@ export class BarComponent implements OnInit {
   constructor(private service: AppServiceService) { }
   ngOnInit(): void {
     this.getd3data()
-
   }
   getd3data() {
     var param = {
@@ -32,8 +31,8 @@ export class BarComponent implements OnInit {
         this.drawBars(this.data);
       }
     })
-
   }
+  
   private createSvg(): void {
     this.svg = d3.select("figure#bar")
       .append("svg")
